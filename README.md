@@ -1,0 +1,1 @@
+# chat_command_detect
