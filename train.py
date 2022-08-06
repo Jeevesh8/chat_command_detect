@@ -74,6 +74,7 @@ def main():
                             target_names=sorted(df[k].unique().tolist()),
                         ),
                     )
+                    
         print(f"Completed epoch {epoch}")
 
 

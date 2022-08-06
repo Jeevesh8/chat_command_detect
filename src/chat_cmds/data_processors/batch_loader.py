@@ -26,7 +26,7 @@ class fasttext_embed:
             "crawl-300d-2M-subword.bin" not in os.listdir("./")
             and self.fasttext_file is None
         ):
-            print(f"Can't find model file in current directory. Downloading..")
+            print(f"Can't find FastText embeddding model file in current directory. Downloading..")
             subprocess.run(
                 shlex.split(
                     "wget https://dl.fbaipublicfiles.com/fasttext/vectors-english/crawl-300d-2M-subword.zip"
@@ -34,7 +34,8 @@ class fasttext_embed:
                 check=True,
             )
             subprocess.run(shlex.split("unzip crawl-300d-2M-subword.zip"), check=True)
-            print("Downloaded file!!")
+            subprocess.run(shlex.split("rm crawl-300d-2M-subword.zip"), check=True)
+            print("Downloaded FastText embeddings file successfully!!")
             self.fasttext_file = "./crawl-300d-2M-subword.bin"
         elif self.fasttext_file is None:
             self.fasttext_file = "./crawl-300d-2M-subword.bin"
@@ -104,7 +105,7 @@ def get_train_eval_loaders(config, df,):
                        seq_len=config["training"]["seq_len"],
                        cols=[k for k,v in config["n_heads"]["out_sizes"].items() if v is not None],)
     
-    train_dataloader = get_loader(df[df["split"]=="train_data"], **loader_args)
-    eval_dataloader  = get_loader(df[df["split"]=="valid_data"], **loader_args)
+    train_dataloader = get_loader(config, df[df["split"]=="train_data"], **loader_args)
+    eval_dataloader  = get_loader(config, df[df["split"]=="valid_data"], **loader_args)
     
     return train_dataloader, eval_dataloader

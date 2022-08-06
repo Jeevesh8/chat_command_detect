@@ -17,7 +17,7 @@ def load_into_df(data_files: List[str]) -> pd.DataFrame:
     return df
 
 
-def drop_duplicates(df: pd.DataFrame) -> pd.DataFrame:
+def drop_dups(df: pd.DataFrame) -> pd.DataFrame:
     return df.drop_duplicates()
 
 
@@ -82,10 +82,10 @@ def get_data(
     else:
         assert data_files is not None
     df = load_into_df(data_files)
-    df = standardize_texts(df)
+    df["transcription"] = standardize_texts(df)
 
     if drop_duplicates:
-        df = drop_duplicates(df)
+        df = drop_dups(df)
 
     if balance_data is not None:
         for col in balance_data:

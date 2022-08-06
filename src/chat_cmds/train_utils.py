@@ -18,7 +18,7 @@ def check_config(config):
         config["rnn"]["use_rnn"] != config["transformer"]["use_transformer"]
     ), """
         Can only use one of rnn or transformer at a time!"""
-    assert config["rnn"]["cell"] in ["lstm", "gru"]
+    assert config["rnn"]["cell"] in ["lstm",]
     
     if config["optimizer"]["wd"]!=0:
         assert config["optimizer"]["type"]=="adamw"
@@ -52,7 +52,7 @@ def load_rnn(rnn_config: Dict[str, Any], key: jrandom.PRNGKey) -> eqx.Module:
     kwargs = dict(
         in_size=rnn_config["in_size"],
         hidden_size=rnn_config["hidden_size"],
-        cell_fn=eqx.nn.GRUCell if rnn_config["cell"] == "gru" else eqx.nn.LSTMCell,
+        cell_fn=eqx.nn.LSTMCell if rnn_config["cell"] == "lstm" else None,
     )
 
     rnn_class = BiRNN if rnn_config["bidirectional"] else RNN
@@ -122,14 +122,16 @@ def create_learning_rate_fn(
 
 
 def get_lr_schedule(config: Dict[str, Any]):
-    return create_learning_rate_fn(
+    lr_curve = create_learning_rate_fn(
         config["data"]["train_length"],
         config["training"]["batch_size"],
         config["optimizer"]["epochs"],
         config["optimizer"]["lr"],
-        config["optimizer"][""]
+        config["optimizer"]["warmup"],
+        config["optimizer"]["lr_decay"],
     )
-
+    print("Stepwise learning rates:", [lr_curve(i) for i in range(config["data"]["train_length"])])
+    return lr_curve
 
 def get_rnn_optimizer(config: Dict[str, Any]) -> optax.GradientTransformation:
     if config["optimizer"]["type"] == "adam":

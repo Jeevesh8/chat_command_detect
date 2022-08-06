@@ -11,7 +11,7 @@ import equinox as eqx
 
 class NFoldHead(eqx.Module):
     heads: List[eqx.nn.Linear]
-    names: List[str]
+    names: List[str] =  eqx.static_field()
 
     def __init__(self, input_size, out_sizes, use_bias, names, *, key):
         keys = jrandom.split(key, len(out_sizes))

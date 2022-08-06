@@ -16,7 +16,7 @@ rnn:
   use_rnn: true
   cell: lstm
   hidden_size: 128
-  input_size: null
+  in_size: 300
   num_layers: 1
   bidirectional: true
 
@@ -30,7 +30,7 @@ data:
   data_files: null
   drop_duplicates: true
   shuffle: true
-  balance_data: false
+  balance_data: []
 
 embeddings:
   fasttext_file: null
