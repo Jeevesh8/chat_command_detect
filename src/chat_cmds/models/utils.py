@@ -11,7 +11,7 @@ import equinox as eqx
 
 class NFoldHead(eqx.Module):
     heads: List[eqx.nn.Linear]
-    names: List[str] =  eqx.static_field()
+    names: List[str] = eqx.static_field()
 
     def __init__(self, input_size, out_sizes, use_bias, names, *, key):
         keys = jrandom.split(key, len(out_sizes))
@@ -21,7 +21,7 @@ class NFoldHead(eqx.Module):
             for i, output_size in enumerate(out_sizes)
         ]
 
-    def __call__(self, input):
+    def __call__(self, input, *, key):
         return {name: head(input) for head, name in zip(self.heads, self.names)}
 
 

@@ -19,9 +19,15 @@ class RNN(eqx.Module):
         self.hidden_size = hidden_size
         self.cell = cell_fn(in_size, hidden_size, key=key)
 
-    def __call__(self, input):
-        init_state = (jnp.zeros(self.hidden_size,),
-                      jnp.zeros(self.hidden_size,))
+    def __call__(self, input, *, key):
+        init_state = (
+            jnp.zeros(
+                self.hidden_size,
+            ),
+            jnp.zeros(
+                self.hidden_size,
+            ),
+        )
 
         def f(carry, inp):
             return self.cell(inp, carry), None
@@ -38,15 +44,19 @@ class BiRNN(eqx.Module):
         f_key, b_key = jrandom.split(key)
         self.hidden_size = hidden_size
         self.f_cell = cell_fn(in_size, hidden_size // 2, key=f_key)
-        self.b_cell = cell_fn(
-            in_size, hidden_size // 2 + hidden_size % 2, key=b_key
-        )
+        self.b_cell = cell_fn(in_size, hidden_size // 2 + hidden_size % 2, key=b_key)
 
     def run_cell(self, input, forward: bool = True):
-        hidden_size = (self.hidden_size // 2 + (self.hidden_size % 2 and not forward))
-        
-        init_state = (jnp.zeros(hidden_size,),
-                      jnp.zeros(hidden_size,))
+        hidden_size = self.hidden_size // 2 + (self.hidden_size % 2 and not forward)
+
+        init_state = (
+            jnp.zeros(
+                hidden_size,
+            ),
+            jnp.zeros(
+                hidden_size,
+            ),
+        )
 
         def f(carry, inp):
             if forward:
@@ -56,7 +66,7 @@ class BiRNN(eqx.Module):
 
         return lax.scan(f, init_state, input)[1]
 
-    def __call__(self, input, length):
+    def __call__(self, input, length, *, key):
         forward_out = self.run_cell(input)
         input = flip_padded_seq(input, length)
         backward_out = self.run_cell(input, False)

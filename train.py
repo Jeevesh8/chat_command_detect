@@ -2,6 +2,7 @@ import sys
 
 import jax
 import jax.numpy as jnp
+import equinox as eqx
 import jax.tree_util as jtu
 from sklearn.metrics import classification_report
 from flax.training import train_state
@@ -31,7 +32,7 @@ def main():
     train_step = get_train_step(optimizer, config)
     eval_step = get_eval_step(config)
 
-    opt_state, model = replicate(opt_state), replicate(model)
+    opt_state, model = replicate(opt_state), replicate(eqx.filter(model, eqx.is_array))
 
     train_metrics = {"losses": []}
     num_steps = 0
