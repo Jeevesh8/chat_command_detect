@@ -8,8 +8,9 @@ optimizer:
   type: adam
   lr: 1e-3
   epochs: 20
-  wd: 0.01
-  warmup: false
+  wd: 0
+  warmup: 0
+  lr_decay: 1e-3
 
 rnn:
   use_rnn: true
@@ -41,3 +42,6 @@ n_heads:
     object: 14
     location: 4
   use_bias: false
+
+logging:
+  eval_steps: 10

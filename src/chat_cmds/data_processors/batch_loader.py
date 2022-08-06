@@ -47,7 +47,7 @@ def spacy_tokenize(sample_text: str):
     return [token.text for token in nlp(sample_text)]
 
 
-def get_rnn_data_loader(
+def rnn_data_loader(
     df: pd.DataFrame,
     batch_size: int,
     seq_len: int,
@@ -87,14 +87,14 @@ def get_rnn_data_loader(
 
         yield jnp.array(batched_inputs), batched_labels
 
-def get_trfrmr_data_loader():
+def trfrmr_data_loader():
     raise NotImplementedError()
 
 def get_loader(config, *args, **kwargs):
     if config["rnn"]["use_rnn"]:
-        return get_rnn_data_loader(*args, **kwargs)
+        return rnn_data_loader(*args, **kwargs)
     else:
-        return get_trfrmr_data_loader(*args, **kwargs)
+        return trfrmr_data_loader(*args, **kwargs)
 
 def get_train_eval_loaders(config, df,):
     

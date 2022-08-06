@@ -38,3 +38,10 @@ def get_rnn_eval_step():
     
     return eval_step
 
+def get_train_step(optim, config):
+    if config["rnn"]["use_rnn"]:
+        return get_rnn_train_step(optim, config["n_heads"]["out_sizes"])
+
+def get_eval_step(config):
+    if config["rnn"]["use_rnn"]:
+        return get_rnn_eval_step()
