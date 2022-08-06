@@ -1,0 +1,43 @@
+---
+training:
+  per_device_batch_size: 32
+  seq_len: 64
+  seed: 0
+
+optimizer:
+  type: adam
+  lr: 1e-3
+  epochs: 20
+  wd: 0.01
+  warmup: false
+
+rnn:
+  use_rnn: true
+  cell: lstm
+  hidden_size: 128
+  input_size: null
+  num_layers: 1
+  bidirectional: true
+
+transformer:
+  use_transformer: false
+  pt_model: bert-base-uncased
+  hidden_size: 512
+
+data:
+  data_dir: ./data
+  data_files: null
+  drop_duplicates: true
+  shuffle: true
+  balance_data: false
+
+embeddings:
+  fasttext_file: null
+  add_pos_embed: false
+
+n_heads:
+  out_sizes:
+    action: 6
+    object: 14
+    location: 4
+  use_bias: false

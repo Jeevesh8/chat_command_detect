@@ -1,0 +1,12 @@
+numpy
+pandas
+jax
+jaxlib
+transformers
+datasets
+flax
+optax
+equinox
+scikit-learn
+fasttext
+spacy
