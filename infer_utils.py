@@ -9,14 +9,22 @@ from chat_cmds.train_utils import get_optimizer, load_model
 def load_wandb_weights(config):
     api = wandb.Api()
     run = api.run(config["inference"]["run_name"])
-    run.config.pop("inference")
+    try:
+        run.config.pop("inference")
+    except KeyError:
+        pass
     config.update(run.config)
     
-    for filename in ["flax_model.msgpack", "config.json"]:
-        wts_file = wandb.restore(os.path.join(config["logging"]["save_file"], filename),
+    if config["rnn"]["use_rnn"]:
+        wts_file = wandb.restore(config["logging"]["save_file"],
                                  run_path=config["inference"]["run_name"])
+        return wts_file.name
+    elif config["transformer"]["use_transformer"]:
+        for filename in ["flax_model.msgpack", "config.json"]:
+            wts_file = wandb.restore(os.path.join(config["logging"]["save_file"], filename),
+                                     run_path=config["inference"]["run_name"])
     
-    return os.path.dirname(wts_file.name)
+        return os.path.dirname(wts_file.name)
 
 def get_pretrained_model(config, wt_file):
     key = jax.random.PRNGKey(0)
