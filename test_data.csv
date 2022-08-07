@@ -1,0 +1,249 @@
+,path,transcription,action,object,location
+0,wavs/speakers/7NqqnAOPVVSKnxyv/8b863c90-4627-11e9-bc65-55b32b211b66.wav,Blow on the lights,activate,lights,none
+1,wavs/speakers/7NqqnAOPVVSKnxyv/8d8f7a10-4627-11e9-bc65-55b32b211b66.wav,Blow off the lights,deactivate,lights,none
+2,wavs/speakers/7NqqnAOPVVSKnxyv/8f7773f0-4627-11e9-bc65-55b32b211b66.wav,Change language,change language,none,none
+3,wavs/speakers/7NqqnAOPVVSKnxyv/916cb440-4627-11e9-bc65-55b32b211b66.wav,Pause the music,deactivate,music,none
+4,wavs/speakers/7NqqnAOPVVSKnxyv/934321f0-4627-11e9-bc65-55b32b211b66.wav,Resume,activate,music,none
+5,wavs/speakers/7NqqnAOPVVSKnxyv/953b4870-4627-11e9-bc65-55b32b211b66.wav,Volume down,decrease,volume,none
+6,wavs/speakers/7NqqnAOPVVSKnxyv/972d2d60-4627-11e9-bc65-55b32b211b66.wav,Blow the lights on,activate,lights,none
+7,wavs/speakers/7NqqnAOPVVSKnxyv/9962f920-4627-11e9-bc65-55b32b211b66.wav,Switch on the lights,activate,lights,none
+8,wavs/speakers/7NqqnAOPVVSKnxyv/9ba71cc0-4627-11e9-bc65-55b32b211b66.wav,Lights on,activate,lights,none
+9,wavs/speakers/7NqqnAOPVVSKnxyv/9dd1ec00-4627-11e9-bc65-55b32b211b66.wav,Switch off the lights,deactivate,lights,none
+10,wavs/speakers/7NqqnAOPVVSKnxyv/9ff197b0-4627-11e9-bc65-55b32b211b66.wav,Blow the lights off,deactivate,lights,none
+11,wavs/speakers/7NqqnAOPVVSKnxyv/a1da06c0-4627-11e9-bc65-55b32b211b66.wav,Lights off,deactivate,lights,none
+12,wavs/speakers/7NqqnAOPVVSKnxyv/a4514850-4627-11e9-bc65-55b32b211b66.wav,Volume up,increase,volume,none
+13,wavs/speakers/7NqqnAOPVVSKnxyv/a667a530-4627-11e9-bc65-55b32b211b66.wav,Blow up the volume,increase,volume,none
+14,wavs/speakers/7NqqnAOPVVSKnxyv/a8835940-4627-11e9-bc65-55b32b211b66.wav,Blow the volume up,increase,volume,none
+15,wavs/speakers/7NqqnAOPVVSKnxyv/aae67690-4627-11e9-bc65-55b32b211b66.wav,Make the music louder,increase,volume,none
+16,wavs/speakers/7NqqnAOPVVSKnxyv/ad0278c0-4627-11e9-bc65-55b32b211b66.wav,Blow down the volume,decrease,volume,none
+17,wavs/speakers/7NqqnAOPVVSKnxyv/af596110-4627-11e9-bc65-55b32b211b66.wav,Blow the volume down,decrease,volume,none
+18,wavs/speakers/7NqqnAOPVVSKnxyv/b1858fe0-4627-11e9-bc65-55b32b211b66.wav,Make the music softer,decrease,volume,none
+19,wavs/speakers/7NqqnAOPVVSKnxyv/b39bc5b0-4627-11e9-bc65-55b32b211b66.wav,Blow up the temperature,increase,heat,none
+20,wavs/speakers/7NqqnAOPVVSKnxyv/b5c47210-4627-11e9-bc65-55b32b211b66.wav,Blow the temperature up,increase,heat,none
+21,wavs/speakers/7NqqnAOPVVSKnxyv/b7a937a0-4627-11e9-bc65-55b32b211b66.wav,Blow up the heat,increase,heat,none
+22,wavs/speakers/7NqqnAOPVVSKnxyv/b9b29c30-4627-11e9-bc65-55b32b211b66.wav,Blow the heat up,increase,heat,none
+23,wavs/speakers/7NqqnAOPVVSKnxyv/bbe4be70-4627-11e9-bc65-55b32b211b66.wav,Blow down the temperature,decrease,heat,none
+24,wavs/speakers/7NqqnAOPVVSKnxyv/bde9dd40-4627-11e9-bc65-55b32b211b66.wav,Blow the temperature down,decrease,heat,none
+25,wavs/speakers/7NqqnAOPVVSKnxyv/bfd13ae0-4627-11e9-bc65-55b32b211b66.wav,Blow down the heat,decrease,heat,none
+26,wavs/speakers/7NqqnAOPVVSKnxyv/c1be8bf0-4627-11e9-bc65-55b32b211b66.wav,Blow the heat down,decrease,heat,none
+27,wavs/speakers/7NqqnAOPVVSKnxyv/c3dbc6a0-4627-11e9-bc65-55b32b211b66.wav,Blow off the music,deactivate,music,none
+28,wavs/speakers/7NqqnAOPVVSKnxyv/c5c87b70-4627-11e9-bc65-55b32b211b66.wav,Stop the music,deactivate,music,none
+29,wavs/speakers/7NqqnAOPVVSKnxyv/c77b3480-4627-11e9-bc65-55b32b211b66.wav,Play,activate,music,none
+30,wavs/speakers/7NqqnAOPVVSKnxyv/c97f41e0-4627-11e9-bc65-55b32b211b66.wav,Put on the music,activate,music,none
+31,wavs/speakers/7NqqnAOPVVSKnxyv/cb8a5420-4627-11e9-bc65-55b32b211b66.wav,Play the music,activate,music,none
+32,wavs/speakers/7NqqnAOPVVSKnxyv/cdba7a90-4627-11e9-bc65-55b32b211b66.wav,Start the music,activate,music,none
+33,wavs/speakers/7NqqnAOPVVSKnxyv/cfb0f360-4627-11e9-bc65-55b32b211b66.wav,Blow on the lamp,activate,lamp,none
+34,wavs/speakers/7NqqnAOPVVSKnxyv/d1caf9c0-4627-11e9-bc65-55b32b211b66.wav,Switch on the lamp,activate,lamp,none
+35,wavs/speakers/7NqqnAOPVVSKnxyv/d3ebddf0-4627-11e9-bc65-55b32b211b66.wav,Blow the lamp on,activate,lamp,none
+36,wavs/speakers/7NqqnAOPVVSKnxyv/d5d4e940-4627-11e9-bc65-55b32b211b66.wav,Lamp on,activate,lamp,none
+37,wavs/speakers/7NqqnAOPVVSKnxyv/d7ea82d0-4627-11e9-bc65-55b32b211b66.wav,Blow off the lamp,deactivate,lamp,none
+38,wavs/speakers/7NqqnAOPVVSKnxyv/d9fbfdb0-4627-11e9-bc65-55b32b211b66.wav,Blow the lamp off,deactivate,lamp,none
+39,wavs/speakers/7NqqnAOPVVSKnxyv/dc3f5e00-4627-11e9-bc65-55b32b211b66.wav,Switch off the lamp,deactivate,lamp,none
+40,wavs/speakers/7NqqnAOPVVSKnxyv/de074cc0-4627-11e9-bc65-55b32b211b66.wav,Lamp off,deactivate,lamp,none
+41,wavs/speakers/7NqqnAOPVVSKnxyv/e015e170-4627-11e9-bc65-55b32b211b66.wav,Switch the lights on,activate,lights,none
+42,wavs/speakers/7NqqnAOPVVSKnxyv/e2227a50-4627-11e9-bc65-55b32b211b66.wav,Blow on the kitchen lights,activate,lights,kitchen
+43,wavs/speakers/7NqqnAOPVVSKnxyv/e4734820-4627-11e9-bc65-55b32b211b66.wav,Switch on the kitchen lights,activate,lights,kitchen
+44,wavs/speakers/7NqqnAOPVVSKnxyv/e6af2e60-4627-11e9-bc65-55b32b211b66.wav,Blow the lights on in the kitchen,activate,lights,kitchen
+45,wavs/speakers/7NqqnAOPVVSKnxyv/e8dd31f0-4627-11e9-bc65-55b32b211b66.wav,Switch on the lights in the kitchen,activate,lights,kitchen
+46,wavs/speakers/7NqqnAOPVVSKnxyv/eb078c00-4627-11e9-bc65-55b32b211b66.wav,Lights on in the kitchen,activate,lights,kitchen
+47,wavs/speakers/7NqqnAOPVVSKnxyv/eee86fb0-4627-11e9-bc65-55b32b211b66.wav,Kitchen lights on,activate,lights,kitchen
+48,wavs/speakers/7NqqnAOPVVSKnxyv/f10d7290-4627-11e9-bc65-55b32b211b66.wav,Switch the kitchen lights on,activate,lights,kitchen
+49,wavs/speakers/7NqqnAOPVVSKnxyv/f31b43f0-4627-11e9-bc65-55b32b211b66.wav,Blow the kitchen lights on,activate,lights,kitchen
+50,wavs/speakers/7NqqnAOPVVSKnxyv/f53daec0-4627-11e9-bc65-55b32b211b66.wav,Blow on the lights in the bedroom,activate,lights,bedroom
+51,wavs/speakers/7NqqnAOPVVSKnxyv/f74a47a0-4627-11e9-bc65-55b32b211b66.wav,Blow the bedroom lights on,activate,lights,bedroom
+52,wavs/speakers/7NqqnAOPVVSKnxyv/f96e6020-4627-11e9-bc65-55b32b211b66.wav,Switch on the lights in the bedroom,activate,lights,bedroom
+53,wavs/speakers/7NqqnAOPVVSKnxyv/fb8fb980-4627-11e9-bc65-55b32b211b66.wav,Switch the bedroom lights on,activate,lights,bedroom
+54,wavs/speakers/7NqqnAOPVVSKnxyv/fdb04f90-4627-11e9-bc65-55b32b211b66.wav,Lights on in the bedroom,activate,lights,bedroom
+55,wavs/speakers/7NqqnAOPVVSKnxyv/ffa0d4f0-4627-11e9-bc65-55b32b211b66.wav,Bedroom lights on,activate,lights,bedroom
+56,wavs/speakers/7NqqnAOPVVSKnxyv/01c9a860-4628-11e9-bc65-55b32b211b66.wav,Blow on the washroom lights,activate,lights,washroom
+57,wavs/speakers/7NqqnAOPVVSKnxyv/03c614a0-4628-11e9-bc65-55b32b211b66.wav,Blow the washroom lights on,activate,lights,washroom
+58,wavs/speakers/7NqqnAOPVVSKnxyv/05e57230-4628-11e9-bc65-55b32b211b66.wav,Switch on the washroom lights,activate,lights,washroom
+59,wavs/speakers/7NqqnAOPVVSKnxyv/07f69ef0-4628-11e9-bc65-55b32b211b66.wav,Lights on in the washroom,activate,lights,washroom
+60,wavs/speakers/7NqqnAOPVVSKnxyv/09ee2930-4628-11e9-bc65-55b32b211b66.wav,Toilet lights on,activate,lights,washroom
+61,wavs/speakers/7NqqnAOPVVSKnxyv/0c01c6f0-4628-11e9-bc65-55b32b211b66.wav,Blow on the bathroom lights,activate,lights,washroom
+62,wavs/speakers/7NqqnAOPVVSKnxyv/0e198360-4628-11e9-bc65-55b32b211b66.wav,Blow the bathroom lights on,activate,lights,washroom
+63,wavs/speakers/7NqqnAOPVVSKnxyv/10456410-4628-11e9-bc65-55b32b211b66.wav,Switch on the bathroom lights,activate,lights,washroom
+64,wavs/speakers/7NqqnAOPVVSKnxyv/12468b40-4628-11e9-bc65-55b32b211b66.wav,Lights on in the bathroom,activate,lights,washroom
+65,wavs/speakers/7NqqnAOPVVSKnxyv/142906e0-4628-11e9-bc65-55b32b211b66.wav,Bathroom lights on,activate,lights,washroom
+66,wavs/speakers/7NqqnAOPVVSKnxyv/1624fdf0-4628-11e9-bc65-55b32b211b66.wav,Switch the lights off,deactivate,lights,none
+67,wavs/speakers/7NqqnAOPVVSKnxyv/1857bc70-4628-11e9-bc65-55b32b211b66.wav,Blow off the kitchen lights,deactivate,lights,kitchen
+68,wavs/speakers/7NqqnAOPVVSKnxyv/1a801ab0-4628-11e9-bc65-55b32b211b66.wav,Blow the lights off in the kitchen,deactivate,lights,kitchen
+69,wavs/speakers/7NqqnAOPVVSKnxyv/1cdca850-4628-11e9-bc65-55b32b211b66.wav,Switch off the lights in the kitchen,deactivate,lights,kitchen
+70,wavs/speakers/7NqqnAOPVVSKnxyv/1f3f5070-4628-11e9-bc65-55b32b211b66.wav,Switch the lights off in the kitchen,deactivate,lights,kitchen
+71,wavs/speakers/7NqqnAOPVVSKnxyv/2158ba90-4628-11e9-bc65-55b32b211b66.wav,Lights off in the kitchen,deactivate,lights,kitchen
+72,wavs/speakers/7NqqnAOPVVSKnxyv/232f2840-4628-11e9-bc65-55b32b211b66.wav,Kitchen lights off,deactivate,lights,kitchen
+73,wavs/speakers/7NqqnAOPVVSKnxyv/25631f40-4628-11e9-bc65-55b32b211b66.wav,Blow off the lights in the bedroom,deactivate,lights,bedroom
+74,wavs/speakers/7NqqnAOPVVSKnxyv/2771b3f0-4628-11e9-bc65-55b32b211b66.wav,Blow the bedroom lights off,deactivate,lights,bedroom
+75,wavs/speakers/7NqqnAOPVVSKnxyv/29bab990-4628-11e9-bc65-55b32b211b66.wav,Switch off the lights in the bedroom,deactivate,lights,bedroom
+76,wavs/speakers/7NqqnAOPVVSKnxyv/2bd61f80-4628-11e9-bc65-55b32b211b66.wav,Switch the bedroom lights off,deactivate,lights,bedroom
+77,wavs/speakers/7NqqnAOPVVSKnxyv/2de10ab0-4628-11e9-bc65-55b32b211b66.wav,Lights off in the bedroom,deactivate,lights,bedroom
+78,wavs/speakers/7NqqnAOPVVSKnxyv/2fd95840-4628-11e9-bc65-55b32b211b66.wav,Bedroom lights off,deactivate,lights,bedroom
+79,wavs/speakers/7NqqnAOPVVSKnxyv/3216c520-4628-11e9-bc65-55b32b211b66.wav,Blow off the washroom lights,deactivate,lights,washroom
+80,wavs/speakers/7NqqnAOPVVSKnxyv/022dbd30-462f-11e9-bc65-55b32b211b66.wav,Switch off the washroom lights,deactivate,lights,washroom
+81,wavs/speakers/7NqqnAOPVVSKnxyv/0696e3b0-462f-11e9-bc65-55b32b211b66.wav,Toilet lights off,deactivate,lights,washroom
+82,wavs/speakers/7NqqnAOPVVSKnxyv/088d3570-462f-11e9-bc65-55b32b211b66.wav,Blow volume up,increase,volume,none
+83,wavs/speakers/7NqqnAOPVVSKnxyv/0a73cfc0-462f-11e9-bc65-55b32b211b66.wav,Blow sound up,increase,volume,none
+84,wavs/speakers/7NqqnAOPVVSKnxyv/0c522cb0-462f-11e9-bc65-55b32b211b66.wav,Blow it up,increase,volume,none
+85,wavs/speakers/7NqqnAOPVVSKnxyv/0e256610-462f-11e9-bc65-55b32b211b66.wav,Make it louder,increase,volume,none
+86,wavs/speakers/7NqqnAOPVVSKnxyv/0fda6910-462f-11e9-bc65-55b32b211b66.wav,Louder,increase,volume,none
+87,wavs/speakers/7NqqnAOPVVSKnxyv/11b62df0-462f-11e9-bc65-55b32b211b66.wav,Volume max,increase,volume,none
+88,wavs/speakers/7NqqnAOPVVSKnxyv/1380dbd0-462f-11e9-bc65-55b32b211b66.wav,Louder please,increase,volume,none
+89,wavs/speakers/7NqqnAOPVVSKnxyv/15677620-462f-11e9-bc65-55b32b211b66.wav,Increase the volume,increase,volume,none
+90,wavs/speakers/7NqqnAOPVVSKnxyv/178218c0-462f-11e9-bc65-55b32b211b66.wav,Increase the sound volume,increase,volume,none
+91,wavs/speakers/7NqqnAOPVVSKnxyv/197eac10-462f-11e9-bc65-55b32b211b66.wav,I need volume,increase,volume,none
+92,wavs/speakers/7NqqnAOPVVSKnxyv/1b628740-462f-11e9-bc65-55b32b211b66.wav,Increase the sound,increase,volume,none
+93,wavs/speakers/7NqqnAOPVVSKnxyv/1d298ba0-462f-11e9-bc65-55b32b211b66.wav,Louder phone,increase,volume,none
+94,wavs/speakers/7NqqnAOPVVSKnxyv/1ef3eb60-462f-11e9-bc65-55b32b211b66.wav,I can't hear that,increase,volume,none
+95,wavs/speakers/7NqqnAOPVVSKnxyv/222702e0-462f-11e9-bc65-55b32b211b66.wav,Too quiet,increase,volume,none
+96,wavs/speakers/7NqqnAOPVVSKnxyv/243ebf50-462f-11e9-bc65-55b32b211b66.wav,That's too quiet,increase,volume,none
+97,wavs/speakers/7NqqnAOPVVSKnxyv/262b7420-462f-11e9-bc65-55b32b211b66.wav,Far too quiet,increase,volume,none
+98,wavs/speakers/7NqqnAOPVVSKnxyv/28167b40-462f-11e9-bc65-55b32b211b66.wav,Blow the sound up,increase,volume,none
+99,wavs/speakers/7NqqnAOPVVSKnxyv/2b38a2d0-462f-11e9-bc65-55b32b211b66.wav,"I need to hear this, increase the volume",increase,volume,none
+100,wavs/speakers/7NqqnAOPVVSKnxyv/2e5c9f20-462f-11e9-bc65-55b32b211b66.wav,"I couldn't hear anything, turn up the volume",increase,volume,none
+101,wavs/speakers/7NqqnAOPVVSKnxyv/3122eb10-462f-11e9-bc65-55b32b211b66.wav,"This video sound is too low, turn up the volume",increase,volume,none
+102,wavs/speakers/7NqqnAOPVVSKnxyv/33234ef0-462f-11e9-bc65-55b32b211b66.wav,Decrease volume,decrease,volume,none
+103,wavs/speakers/7NqqnAOPVVSKnxyv/355f0e20-462f-11e9-bc65-55b32b211b66.wav,Blow volume down,decrease,volume,none
+104,wavs/speakers/7NqqnAOPVVSKnxyv/373ecaa0-462f-11e9-bc65-55b32b211b66.wav,Blow sound down,decrease,volume,none
+105,wavs/speakers/7NqqnAOPVVSKnxyv/394fd050-462f-11e9-bc65-55b32b211b66.wav,Decrease audio volume,decrease,volume,none
+106,wavs/speakers/7NqqnAOPVVSKnxyv/3b685010-462f-11e9-bc65-55b32b211b66.wav,Reduce audio volume,decrease,volume,none
+107,wavs/speakers/7NqqnAOPVVSKnxyv/3d6c5d70-462f-11e9-bc65-55b32b211b66.wav,Blow it down,decrease,volume,none
+108,wavs/speakers/7NqqnAOPVVSKnxyv/3f438e70-462f-11e9-bc65-55b32b211b66.wav,Quieter,decrease,volume,none
+109,wavs/speakers/7NqqnAOPVVSKnxyv/4120d9f0-462f-11e9-bc65-55b32b211b66.wav,Volume mute,decrease,volume,none
+110,wavs/speakers/7NqqnAOPVVSKnxyv/431c82e0-462f-11e9-bc65-55b32b211b66.wav,Lower the volume,decrease,volume,none
+111,wavs/speakers/7NqqnAOPVVSKnxyv/44f4c550-462f-11e9-bc65-55b32b211b66.wav,Volume lower,decrease,volume,none
+112,wavs/speakers/7NqqnAOPVVSKnxyv/46e8cd20-462f-11e9-bc65-55b32b211b66.wav,Decrease the volume,decrease,volume,none
+113,wavs/speakers/7NqqnAOPVVSKnxyv/48dcfc00-462f-11e9-bc65-55b32b211b66.wav,Decrease sound levels,decrease,volume,none
+114,wavs/speakers/7NqqnAOPVVSKnxyv/4ac20fb0-462f-11e9-bc65-55b32b211b66.wav,Too loud,decrease,volume,none
+115,wavs/speakers/7NqqnAOPVVSKnxyv/4caf60c0-462f-11e9-bc65-55b32b211b66.wav,That’s too loud,decrease,volume,none
+116,wavs/speakers/7NqqnAOPVVSKnxyv/4e75a1d0-462f-11e9-bc65-55b32b211b66.wav,Far too loud,decrease,volume,none
+117,wavs/speakers/7NqqnAOPVVSKnxyv/504028a0-462f-11e9-bc65-55b32b211b66.wav,Make it quieter,decrease,volume,none
+118,wavs/speakers/7NqqnAOPVVSKnxyv/525ca000-462f-11e9-bc65-55b32b211b66.wav,"It’s too loud, turn it down",decrease,volume,none
+119,wavs/speakers/7NqqnAOPVVSKnxyv/54a1fc20-462f-11e9-bc65-55b32b211b66.wav,"It’s too loud, turn the volume down",decrease,volume,none
+120,wavs/speakers/7NqqnAOPVVSKnxyv/577e4110-462f-11e9-bc65-55b32b211b66.wav,Increase the temperature,increase,heat,none
+121,wavs/speakers/7NqqnAOPVVSKnxyv/59718590-462f-11e9-bc65-55b32b211b66.wav,Increase the heating,increase,heat,none
+122,wavs/speakers/7NqqnAOPVVSKnxyv/5bc5fce0-462f-11e9-bc65-55b32b211b66.wav,Could you increase the heating?,increase,heat,none
+123,wavs/speakers/7NqqnAOPVVSKnxyv/5e4d6b10-462f-11e9-bc65-55b32b211b66.wav,Could you increase the heating please?,increase,heat,none
+124,wavs/speakers/7NqqnAOPVVSKnxyv/606093a0-462f-11e9-bc65-55b32b211b66.wav,Make it hotter,increase,heat,none
+125,wavs/speakers/7NqqnAOPVVSKnxyv/624495e0-462f-11e9-bc65-55b32b211b66.wav,More heat,increase,heat,none
+126,wavs/speakers/7NqqnAOPVVSKnxyv/641de9c0-462f-11e9-bc65-55b32b211b66.wav,Heat up,increase,heat,none
+127,wavs/speakers/7NqqnAOPVVSKnxyv/66a11230-462f-11e9-bc65-55b32b211b66.wav,Blow up the temperature in the kitchen,increase,heat,kitchen
+128,wavs/speakers/7NqqnAOPVVSKnxyv/68e6e380-462f-11e9-bc65-55b32b211b66.wav,Blow the kitchen temperature up,increase,heat,kitchen
+129,wavs/speakers/7NqqnAOPVVSKnxyv/6c4306d0-462f-11e9-bc65-55b32b211b66.wav,Increase the temperature in the kitchen,increase,heat,kitchen
+130,wavs/speakers/7NqqnAOPVVSKnxyv/6ea19040-462f-11e9-bc65-55b32b211b66.wav,Increase the heating in the kitchen,increase,heat,kitchen
+131,wavs/speakers/7NqqnAOPVVSKnxyv/70e31bd0-462f-11e9-bc65-55b32b211b66.wav,Blow up the heat in the kitchen,increase,heat,kitchen
+132,wavs/speakers/7NqqnAOPVVSKnxyv/733ee620-462f-11e9-bc65-55b32b211b66.wav,Blow the heat up in the kitchen,increase,heat,kitchen
+133,wavs/speakers/7NqqnAOPVVSKnxyv/7544c840-462f-11e9-bc65-55b32b211b66.wav,Kitchen heat up,increase,heat,kitchen
+134,wavs/speakers/7NqqnAOPVVSKnxyv/77b9bfe0-462f-11e9-bc65-55b32b211b66.wav,Blow up the temperature in the bedroom,increase,heat,bedroom
+135,wavs/speakers/7NqqnAOPVVSKnxyv/7a247e50-462f-11e9-bc65-55b32b211b66.wav,Blow the temperature in the bedroom up,increase,heat,bedroom
+136,wavs/speakers/7NqqnAOPVVSKnxyv/7c41e010-462f-11e9-bc65-55b32b211b66.wav,Blow up the bedroom heat,increase,heat,bedroom
+137,wavs/speakers/7NqqnAOPVVSKnxyv/7e6c8840-462f-11e9-bc65-55b32b211b66.wav,Blow the bedroom heat up,increase,heat,bedroom
+138,wavs/speakers/7NqqnAOPVVSKnxyv/99b5b360-462f-11e9-bc65-55b32b211b66.wav,Bedroom heat up,increase,heat,bedroom
+139,wavs/speakers/7NqqnAOPVVSKnxyv/9c34e430-462f-11e9-bc65-55b32b211b66.wav,Increase the temperature in the bedroom,increase,heat,bedroom
+140,wavs/speakers/7NqqnAOPVVSKnxyv/9ebbb620-462f-11e9-bc65-55b32b211b66.wav,Increase the heating in the bedroom,increase,heat,bedroom
+141,wavs/speakers/7NqqnAOPVVSKnxyv/a1192e20-462f-11e9-bc65-55b32b211b66.wav,Blow up the washroom temperature,increase,heat,washroom
+142,wavs/speakers/7NqqnAOPVVSKnxyv/a3a00010-462f-11e9-bc65-55b32b211b66.wav,Blow the temperature up in the washroom,increase,heat,washroom
+143,wavs/speakers/7NqqnAOPVVSKnxyv/a5e2c420-462f-11e9-bc65-55b32b211b66.wav,Blow up the heat in the washroom,increase,heat,washroom
+144,wavs/speakers/7NqqnAOPVVSKnxyv/a87be590-462f-11e9-bc65-55b32b211b66.wav,Blow the heat up in the washroom,increase,heat,washroom
+145,wavs/speakers/7NqqnAOPVVSKnxyv/aa972470-462f-11e9-bc65-55b32b211b66.wav,Toilet heat up,increase,heat,washroom
+146,wavs/speakers/7NqqnAOPVVSKnxyv/acf8bb20-462f-11e9-bc65-55b32b211b66.wav,Increase the temperature in the washroom,increase,heat,washroom
+147,wavs/speakers/7NqqnAOPVVSKnxyv/af5a9ff0-462f-11e9-bc65-55b32b211b66.wav,Increase the heating in the washroom,increase,heat,washroom
+148,wavs/speakers/7NqqnAOPVVSKnxyv/b1cfbea0-462f-11e9-bc65-55b32b211b66.wav,Blow up the bathroom temperature,increase,heat,washroom
+149,wavs/speakers/7NqqnAOPVVSKnxyv/b4136d10-462f-11e9-bc65-55b32b211b66.wav,Blow the temperature up in the bathroom,increase,heat,washroom
+150,wavs/speakers/7NqqnAOPVVSKnxyv/b6297bd0-462f-11e9-bc65-55b32b211b66.wav,Blow up the heat in the bathroom,increase,heat,washroom
+151,wavs/speakers/7NqqnAOPVVSKnxyv/b83fb1a0-462f-11e9-bc65-55b32b211b66.wav,Blow the heat up in the bathroom,increase,heat,washroom
+152,wavs/speakers/7NqqnAOPVVSKnxyv/ba177ee0-462f-11e9-bc65-55b32b211b66.wav,Bathroom heat up,increase,heat,washroom
+153,wavs/speakers/7NqqnAOPVVSKnxyv/bc69d350-462f-11e9-bc65-55b32b211b66.wav,Increase the temperature in the bathroom,increase,heat,washroom
+154,wavs/speakers/7NqqnAOPVVSKnxyv/bec9bc50-462f-11e9-bc65-55b32b211b66.wav,Increase the heating in the bathroom,increase,heat,washroom
+155,wavs/speakers/7NqqnAOPVVSKnxyv/c0b78290-462f-11e9-bc65-55b32b211b66.wav,Make it cooler,decrease,heat,none
+156,wavs/speakers/7NqqnAOPVVSKnxyv/c2845350-462f-11e9-bc65-55b32b211b66.wav,Less heat,decrease,heat,none
+157,wavs/speakers/7NqqnAOPVVSKnxyv/c45a99f0-462f-11e9-bc65-55b32b211b66.wav,Heat down,decrease,heat,none
+158,wavs/speakers/7NqqnAOPVVSKnxyv/c65d95e0-462f-11e9-bc65-55b32b211b66.wav,Decrease the temperature,decrease,heat,none
+159,wavs/speakers/7NqqnAOPVVSKnxyv/c83fea70-462f-11e9-bc65-55b32b211b66.wav,Decrease the heating,decrease,heat,none
+160,wavs/speakers/7NqqnAOPVVSKnxyv/ca41fc00-462f-11e9-bc65-55b32b211b66.wav,Could you decrease the heating?,decrease,heat,none
+161,wavs/speakers/7NqqnAOPVVSKnxyv/cc741e40-462f-11e9-bc65-55b32b211b66.wav,Could you decrease the heating please?,decrease,heat,none
+162,wavs/speakers/7NqqnAOPVVSKnxyv/cee6a4e0-462f-11e9-bc65-55b32b211b66.wav,Blow down the temperature in the kitchen,decrease,heat,kitchen
+163,wavs/speakers/7NqqnAOPVVSKnxyv/d172f510-462f-11e9-bc65-55b32b211b66.wav,Blow the kitchen temperature down,decrease,heat,kitchen
+164,wavs/speakers/7NqqnAOPVVSKnxyv/d3b5b920-462f-11e9-bc65-55b32b211b66.wav,Blow down the heat in the kitchen,decrease,heat,kitchen
+165,wavs/speakers/7NqqnAOPVVSKnxyv/d5cefc30-462f-11e9-bc65-55b32b211b66.wav,Blow the heat down in the kitchen,decrease,heat,kitchen
+166,wavs/speakers/7NqqnAOPVVSKnxyv/d7c94590-462f-11e9-bc65-55b32b211b66.wav,Kitchen heat down,decrease,heat,kitchen
+167,wavs/speakers/7NqqnAOPVVSKnxyv/d9f1f1f0-462f-11e9-bc65-55b32b211b66.wav,Decrease the temperature in the kitchen,decrease,heat,kitchen
+168,wavs/speakers/7NqqnAOPVVSKnxyv/dc3af790-462f-11e9-bc65-55b32b211b66.wav,Decrease the heating in the kitchen,decrease,heat,kitchen
+169,wavs/speakers/7NqqnAOPVVSKnxyv/de8ef9b0-462f-11e9-bc65-55b32b211b66.wav,Blow down the temperature in the bedroom,decrease,heat,bedroom
+170,wavs/speakers/7NqqnAOPVVSKnxyv/e0c98060-462f-11e9-bc65-55b32b211b66.wav,Blow the temperature in the bedroom down,decrease,heat,bedroom
+171,wavs/speakers/7NqqnAOPVVSKnxyv/e2de7db0-462f-11e9-bc65-55b32b211b66.wav,Blow down the bedroom heat,decrease,heat,bedroom
+172,wavs/speakers/7NqqnAOPVVSKnxyv/e6a39c00-462f-11e9-bc65-55b32b211b66.wav,Blow the bedroom heat down,decrease,heat,bedroom
+173,wavs/speakers/7NqqnAOPVVSKnxyv/eb054870-462f-11e9-bc65-55b32b211b66.wav,Decrease the temperature in the bedroom,decrease,heat,bedroom
+174,wavs/speakers/7NqqnAOPVVSKnxyv/ed027800-462f-11e9-bc65-55b32b211b66.wav,Decrease the heating in the bedroom,decrease,heat,bedroom
+175,wavs/speakers/7NqqnAOPVVSKnxyv/ef52d0a0-462f-11e9-bc65-55b32b211b66.wav,Blow down the washroom temperature,decrease,heat,washroom
+176,wavs/speakers/7NqqnAOPVVSKnxyv/f1a9b8f0-462f-11e9-bc65-55b32b211b66.wav,Blow the temperature down in the washroom,decrease,heat,washroom
+177,wavs/speakers/7NqqnAOPVVSKnxyv/f3ba2260-462f-11e9-bc65-55b32b211b66.wav,Blow down the heat in the washroom,decrease,heat,washroom
+178,wavs/speakers/7NqqnAOPVVSKnxyv/f5fc9850-462f-11e9-bc65-55b32b211b66.wav,Blow the heat down in the washroom,decrease,heat,washroom
+179,wavs/speakers/7NqqnAOPVVSKnxyv/f8572a20-462f-11e9-bc65-55b32b211b66.wav,Decrease the temperature in the washroom,decrease,heat,washroom
+180,wavs/speakers/7NqqnAOPVVSKnxyv/fa8331e0-462f-11e9-bc65-55b32b211b66.wav,Decrease the heating in the washroom,decrease,heat,washroom
+181,wavs/speakers/7NqqnAOPVVSKnxyv/fc851c60-462f-11e9-bc65-55b32b211b66.wav,Toilet heat down,decrease,heat,washroom
+182,wavs/speakers/7NqqnAOPVVSKnxyv/fee134d0-462f-11e9-bc65-55b32b211b66.wav,Blow down the bathroom temperature,decrease,heat,washroom
+183,wavs/speakers/7NqqnAOPVVSKnxyv/01307c00-4630-11e9-bc65-55b32b211b66.wav,Blow the temperature down in the bathroom,decrease,heat,washroom
+184,wavs/speakers/7NqqnAOPVVSKnxyv/04458430-4630-11e9-bc65-55b32b211b66.wav,Blow down the heat in the bathroom,decrease,heat,washroom
+185,wavs/speakers/7NqqnAOPVVSKnxyv/067e8440-4630-11e9-bc65-55b32b211b66.wav,Blow the heat down in the bathroom,decrease,heat,washroom
+186,wavs/speakers/7NqqnAOPVVSKnxyv/08ce40a0-4630-11e9-bc65-55b32b211b66.wav,Decrease the temperature in the bathroom,decrease,heat,washroom
+187,wavs/speakers/7NqqnAOPVVSKnxyv/0ae8bc30-4630-11e9-bc65-55b32b211b66.wav,Decrease the heating in the bathroom,decrease,heat,washroom
+188,wavs/speakers/7NqqnAOPVVSKnxyv/0ce2b770-4630-11e9-bc65-55b32b211b66.wav,Bathroom heat down,decrease,heat,washroom
+189,wavs/speakers/7NqqnAOPVVSKnxyv/0ecbc2c0-4630-11e9-bc65-55b32b211b66.wav,Pause music,deactivate,music,none
+190,wavs/speakers/7NqqnAOPVVSKnxyv/10c325f0-4630-11e9-bc65-55b32b211b66.wav,Stop music,deactivate,music,none
+191,wavs/speakers/7NqqnAOPVVSKnxyv/127e9190-4630-11e9-bc65-55b32b211b66.wav,Stop,deactivate,music,none
+192,wavs/speakers/7NqqnAOPVVSKnxyv/1455c290-4630-11e9-bc65-55b32b211b66.wav,Play music,activate,music,none
+193,wavs/speakers/7NqqnAOPVVSKnxyv/164584a0-4630-11e9-bc65-55b32b211b66.wav,Resume music,activate,music,none
+194,wavs/speakers/7NqqnAOPVVSKnxyv/18583800-4630-11e9-bc65-55b32b211b66.wav,Where me the newspaper,bring,newspaper,none
+195,wavs/speakers/7NqqnAOPVVSKnxyv/1a45b020-4630-11e9-bc65-55b32b211b66.wav,Get me the newspaper,bring,newspaper,none
+196,wavs/speakers/7NqqnAOPVVSKnxyv/1c248240-4630-11e9-bc65-55b32b211b66.wav,Where the newspaper,bring,newspaper,none
+197,wavs/speakers/7NqqnAOPVVSKnxyv/90f412c0-4630-11e9-bc65-55b32b211b66.wav,Where newspaper,bring,newspaper,none
+198,wavs/speakers/7NqqnAOPVVSKnxyv/93350210-4630-11e9-bc65-55b32b211b66.wav,Go get the newspaper,bring,newspaper,none
+199,wavs/speakers/7NqqnAOPVVSKnxyv/96178890-4630-11e9-bc65-55b32b211b66.wav,Fetch the newspaper,bring,newspaper,none
+200,wavs/speakers/7NqqnAOPVVSKnxyv/98567c10-4630-11e9-bc65-55b32b211b66.wav,Where me some juice,bring,juice,none
+201,wavs/speakers/7NqqnAOPVVSKnxyv/9a581870-4630-11e9-bc65-55b32b211b66.wav,Get me some juice,bring,juice,none
+202,wavs/speakers/7NqqnAOPVVSKnxyv/9c3eb2c0-4630-11e9-bc65-55b32b211b66.wav,Where some juice,bring,juice,none
+203,wavs/speakers/7NqqnAOPVVSKnxyv/9e204400-4630-11e9-bc65-55b32b211b66.wav,Where juice,bring,juice,none
+204,wavs/speakers/7NqqnAOPVVSKnxyv/a02a44d0-4630-11e9-bc65-55b32b211b66.wav,Go get me some juice,bring,juice,none
+205,wavs/speakers/7NqqnAOPVVSKnxyv/a2224440-4630-11e9-bc65-55b32b211b66.wav,Where me my socks,bring,socks,none
+206,wavs/speakers/7NqqnAOPVVSKnxyv/a47fe350-4630-11e9-bc65-55b32b211b66.wav,Get me my socks,bring,socks,none
+207,wavs/speakers/7NqqnAOPVVSKnxyv/a65bf650-4630-11e9-bc65-55b32b211b66.wav,Where socks,bring,socks,none
+208,wavs/speakers/7NqqnAOPVVSKnxyv/a854b910-4630-11e9-bc65-55b32b211b66.wav,Where my socks,bring,socks,none
+209,wavs/speakers/7NqqnAOPVVSKnxyv/aa5df690-4630-11e9-bc65-55b32b211b66.wav,Go get me my socks,bring,socks,none
+210,wavs/speakers/7NqqnAOPVVSKnxyv/ac48fdb0-4630-11e9-bc65-55b32b211b66.wav,Fetch my socks,bring,socks,none
+211,wavs/speakers/7NqqnAOPVVSKnxyv/ae5f3380-4630-11e9-bc65-55b32b211b66.wav,Where me my shoes,bring,shoes,none
+212,wavs/speakers/7NqqnAOPVVSKnxyv/b059cb00-4630-11e9-bc65-55b32b211b66.wav,Get me my shoes,bring,shoes,none
+213,wavs/speakers/7NqqnAOPVVSKnxyv/b23541c0-4630-11e9-bc65-55b32b211b66.wav,Where shoes,bring,shoes,none
+214,wavs/speakers/7NqqnAOPVVSKnxyv/b4143af0-4630-11e9-bc65-55b32b211b66.wav,Where my shoes,bring,shoes,none
+215,wavs/speakers/7NqqnAOPVVSKnxyv/b6428ca0-4630-11e9-bc65-55b32b211b66.wav,Go get me my shoes,bring,shoes,none
+216,wavs/speakers/7NqqnAOPVVSKnxyv/b820e990-4630-11e9-bc65-55b32b211b66.wav,Fetch my shoes,bring,shoes,none
+217,wavs/speakers/7NqqnAOPVVSKnxyv/bb5b05f0-4630-11e9-bc65-55b32b211b66.wav,Allow a different language,change language,none,none
+218,wavs/speakers/7NqqnAOPVVSKnxyv/bd83b250-4630-11e9-bc65-55b32b211b66.wav,Use a different language,change language,none,none
+219,wavs/speakers/7NqqnAOPVVSKnxyv/bf96b3d0-4630-11e9-bc65-55b32b211b66.wav,Change the language,change language,none,none
+220,wavs/speakers/7NqqnAOPVVSKnxyv/c1795680-4630-11e9-bc65-55b32b211b66.wav,Switch the language,change language,none,none
+221,wavs/speakers/7NqqnAOPVVSKnxyv/c3f61650-4630-11e9-bc65-55b32b211b66.wav,Switch language,change language,none,none
+222,wavs/speakers/7NqqnAOPVVSKnxyv/c604ab00-4630-11e9-bc65-55b32b211b66.wav,Switch languages,change language,none,none
+223,wavs/speakers/7NqqnAOPVVSKnxyv/c8ae6e40-4630-11e9-bc65-55b32b211b66.wav,Change system language,change language,none,none
+224,wavs/speakers/7NqqnAOPVVSKnxyv/cb15d150-4630-11e9-bc65-55b32b211b66.wav,Open language settings,change language,none,none
+225,wavs/speakers/7NqqnAOPVVSKnxyv/cd50a620-4630-11e9-bc65-55b32b211b66.wav,Set the language,change language,none,none
+226,wavs/speakers/7NqqnAOPVVSKnxyv/cf677830-4630-11e9-bc65-55b32b211b66.wav,Language settings,change language,none,none
+227,wavs/speakers/7NqqnAOPVVSKnxyv/d17f0d90-4630-11e9-bc65-55b32b211b66.wav,Set language to Mandarin,change language,Chinese,none
+228,wavs/speakers/7NqqnAOPVVSKnxyv/d3b85bc0-4630-11e9-bc65-55b32b211b66.wav,Set language to German,change language,German,none
+229,wavs/speakers/7NqqnAOPVVSKnxyv/d5d10290-4630-11e9-bc65-55b32b211b66.wav,Set language to Korean,change language,Korean,none
+230,wavs/speakers/7NqqnAOPVVSKnxyv/d7ebcc40-4630-11e9-bc65-55b32b211b66.wav,Set language to English,change language,English,none
+231,wavs/speakers/7NqqnAOPVVSKnxyv/dadf69c0-4630-11e9-bc65-55b32b211b66.wav,Set my device to Mandarin,change language,Chinese,none
+232,wavs/speakers/7NqqnAOPVVSKnxyv/e0bfc6f0-4630-11e9-bc65-55b32b211b66.wav,OK now switch the main language to German,change language,German,none
+233,wavs/speakers/7NqqnAOPVVSKnxyv/e3bd7690-4630-11e9-bc65-55b32b211b66.wav,OK now switch the main language to Korean,change language,Korean,none
+234,wavs/speakers/7NqqnAOPVVSKnxyv/e6fb8a90-4630-11e9-bc65-55b32b211b66.wav,OK now switch the main language to English,change language,English,none
+235,wavs/speakers/7NqqnAOPVVSKnxyv/e9af38e0-4630-11e9-bc65-55b32b211b66.wav,Set my phone's language to Mandarin,change language,Chinese,none
+236,wavs/speakers/7NqqnAOPVVSKnxyv/ec398d40-4630-11e9-bc65-55b32b211b66.wav,Set my phone's language to German,change language,German,none
+237,wavs/speakers/7NqqnAOPVVSKnxyv/eec8eab0-4630-11e9-bc65-55b32b211b66.wav,Set my phone's language to Korean,change language,Korean,none
+238,wavs/speakers/7NqqnAOPVVSKnxyv/f1cd7820-4630-11e9-bc65-55b32b211b66.wav,Set my phone's language to English,change language,English,none
+239,wavs/speakers/7NqqnAOPVVSKnxyv/f4da1be0-4630-11e9-bc65-55b32b211b66.wav,I need to practice my Mandarin. Switch the language,change language,Chinese,none
+240,wavs/speakers/7NqqnAOPVVSKnxyv/f7a8a530-4630-11e9-bc65-55b32b211b66.wav,I need to practice my German. Switch the language,change language,German,none
+241,wavs/speakers/7NqqnAOPVVSKnxyv/fa8dead0-4630-11e9-bc65-55b32b211b66.wav,I need to practice my Korean. Switch the language,change language,Korean,none
+242,wavs/speakers/7NqqnAOPVVSKnxyv/fd53e8a0-4630-11e9-bc65-55b32b211b66.wav,I need to practice my English. Switch the language,change language,English,none
+243,wavs/speakers/7NqqnAOPVVSKnxyv/ff845d30-4630-11e9-bc65-55b32b211b66.wav,Blow the washroom lights off,deactivate,lights,washroom
+244,wavs/speakers/7NqqnAOPVVSKnxyv/015a0790-4631-11e9-bc65-55b32b211b66.wav,Pause,deactivate,music,none
+245,wavs/speakers/7NqqnAOPVVSKnxyv/bead6fd0-4631-11e9-bc65-55b32b211b66.wav,Lights off in the washroom,deactivate,lights,washroom
+246,wavs/speakers/7NqqnAOPVVSKnxyv/f83f2df0-4632-11e9-bc65-55b32b211b66.wav,Bedroom heat down,decrease,heat,bedroom
+247,wavs/speakers/7NqqnAOPVVSKnxyv/6f713f80-4633-11e9-bc65-55b32b211b66.wav,OK now switch the main language to Mandarin,change language,Chinese,none
