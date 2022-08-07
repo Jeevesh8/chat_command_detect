@@ -11,10 +11,12 @@ def load_wandb_weights(config):
     run = api.run(config["inference"]["run_name"])
     run.config.pop("inference")
     config.upate(run.config)
-
-    wts_file = wandb.restore(config["logging"]["save_file"],
-                             run_path=config["inference"]["run_name"])
-    return wts_file.name
+    
+    for filename in ["flax_model.msgpack", "config.json"]:
+        wts_file = wandb.restore(os.path.join(config["logging"]["save_file"], filename),
+                                 run_path=config["inference"]["run_name"])
+    
+    return os.path.dirname(wts_file.name)
 
 def get_pretrained_model(config, wt_file):
     key = jax.random.PRNGKey(0)
