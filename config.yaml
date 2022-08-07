@@ -49,6 +49,6 @@ logging:
 
 inference:
   run_infer: false
-  run_id: jeevesh8/chat_cmds/runs
+  run_name: jeevesh8/chat_cmds/runs
   test_file: ./test_data.csv
   print_labels: true

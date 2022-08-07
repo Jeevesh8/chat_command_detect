@@ -154,7 +154,7 @@ def train_trfrmr_main(config, train_dataloader, eval_dataloader, cat_to_int_map)
     num_steps = 0
 
     for epoch in range(config["optimizer"]["epochs"]):
-        train_dataloader, eval_dataloader = copy.deepcopy(original_loaders)
+        train_dataloader, _ = copy.deepcopy(original_loaders)
         for batch in train_dataloader:
             batch = shard(batch)
             train_state, train_metric, dropout_rngs = train_step(
@@ -163,6 +163,7 @@ def train_trfrmr_main(config, train_dataloader, eval_dataloader, cat_to_int_map)
             train_metrics["losses"].append(train_metric["loss"])
             num_steps += 1
             if num_steps % config["logging"]["eval_steps"] == 0:
+                _, eval_dataloader = copy.deepcopy(original_loaders)
                 eval_trfrmr_main(
                     config, eval_dataloader, eval_step, train_state, cat_to_int_map
                 )
