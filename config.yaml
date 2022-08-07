@@ -5,15 +5,15 @@ training:
   seed: 0
 
 optimizer:
-  type: adam
-  lr: 0.01
+  type: adamw
+  lr: 0.0002
   epochs: 200
-  wd: 0
-  warmup: 0
-  lr_decay: 0.01
+  wd: 0.01
+  warmup: 0.1
+  lr_decay: 0
 
 rnn:
-  use_rnn: true
+  use_rnn: false
   cell: lstm
   hidden_size: 128
   in_size: 300
@@ -21,16 +21,15 @@ rnn:
   bidirectional: false
 
 transformer:
-  use_transformer: false
+  use_transformer: true
   pt_model: bert-base-uncased
-  hidden_size: 512
 
 data:
   data_dir: ./data
   data_files: null
   drop_duplicates: true
   shuffle: true
-  balance_data: [action]
+  balance_data: null
 
 embeddings:
   fasttext_file: null
@@ -39,11 +38,11 @@ embeddings:
 n_heads:
   out_sizes:
     action: 6
-    object: null
-    location: null
+    object: 14
+    location: 4
   use_bias: false
 
 logging:
   eval_steps: 80
-  save_file: lstm_action_model.tree
-  run_name: lstm_action
+  save_file: bert_all_three_model.tree
+  run_name: trfrmr_first
