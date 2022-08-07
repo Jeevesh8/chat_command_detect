@@ -12,7 +12,7 @@ def load_wandb_weights(config):
     run.config.pop("inference")
     config.upate(run.config)
 
-    wts_file = wandb.restore(config["logging"]["save_file"],,
+    wts_file = wandb.restore(config["logging"]["save_file"],
                              run_path=config["inference"]["run_name"])
     return wts_file.name
 
