@@ -18,7 +18,7 @@ from train_eval_steps import get_eval_step, get_train_step
 def main():
     config = read_yaml(sys.argv[1])
 
-    df = get_data(**config["data"])
+    df, cat_to_int_map = get_data(**config["data"])
     train_dataloader, eval_dataloader = get_train_eval_loaders(config, df)
     train_dataloader, eval_dataloader = list(train_dataloader), list(eval_dataloader)
 
@@ -69,7 +69,7 @@ def main():
                         classification_report(
                             labels[k],
                             preds[k],
-                            target_names=sorted(df[k].unique().tolist()),
+                            target_names=cat_to_int_map[k].values(),
                         ),
                     )
                     

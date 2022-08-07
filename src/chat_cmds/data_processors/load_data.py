@@ -94,12 +94,14 @@ def get_data(
     if shuffle:
         df = df.sample(frac=1, random_state=42,).reset_index(drop=True)
     
+    cat_to_int_map = {}
     if cat_to_int:
         
         for col in ['action', 'object', 'location']:
             col_vals = df[col].unique().tolist()
             col_vals.sort()
-            df[col] = df[col].map({v: i for i,v in enumerate(col_vals)})
-    
-    return df
+            mapping = {v: i for i,v in enumerate(col_vals)}
+            df[col] = df[col].map(mapping)
+            cat_to_int_map[col] = mapping
+    return df, cat_to_int_map
 
