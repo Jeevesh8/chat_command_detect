@@ -1,13 +1,8 @@
 import jax
-import optax
 import equinox as eqx
 import jax.numpy as jnp
 import jax.tree_util as jtu
-from flax.training.common_utils import onehot
-
-def cross_entropy_loss(logits, labels, num_labels):
-    xentropy = optax.softmax_cross_entropy(logits, onehot(labels, num_classes=num_labels))
-    return jnp.mean(xentropy)
+from chat_cmds.train_utils import cross_entropy_loss
 
 def get_rnn_train_step(optim, num_labels):
     
@@ -38,11 +33,52 @@ def get_rnn_eval_step():
     
     return eval_step
 
+def get_trfrmr_train_step(num_labels):
+    
+    @jax.pmap(axis_name="batch", donate_argnums=(0,))
+    def train_step(state, batch, dropout_rng):
+        """Trains model with an optimizer (both in `state`) on `batch`, 
+           returning a pair `(new_state, loss)`."""
+        
+        dropout_rng, new_dropout_rng = jax.random.split(dropout_rng)
+        targets = batch.pop("labels")
+
+        def loss_fn(params):
+            logits = state.apply_fn(**batch, params=params, dropout_rng=dropout_rng, train=True)[0]
+            logits = state.head_separator(logits)
+            loss = jtu.tree_reduce(lambda w,z: w+z, state.loss_fn(logits, targets, num_labels))
+            return loss
+
+        grad_fn = jax.value_and_grad(loss_fn)
+        loss, grad = grad_fn(state.params)
+        grad = jax.lax.pmean(grad, "batch")
+        new_state = state.apply_gradients(grads=grad)
+        metrics = jax.lax.pmean({"loss": loss,}, axis_name="batch")
+        return new_state, metrics, new_dropout_rng
+    
+    return train_step
+
+def get_trfrmr_eval_step(num_labels):
+    
+    @jax.pmap(axis_name="batch")
+    def eval_step(state, batch, labels):
+        logits = state.apply_fn(**batch, params=state.params, train=False)[0]
+        logits = state.head_separator(logits)
+        loss = state.loss_fn(logits, labels, num_labels)
+        return state.preds_fn(logits)
+
+    return eval_step
+
 def get_train_step(optim, config):
     if config["rnn"]["use_rnn"]:
         return get_rnn_train_step(optim, config["n_heads"]["out_sizes"])
-
+    elif config["transformer"]["use_transformer"]:
+        return get_trfrmr_train_step(config["n_heads"]["out_sizes"])
+    
 def get_eval_step(config):
     if config["rnn"]["use_rnn"]:
         return get_rnn_eval_step()
+    elif config["transformer"]["use_transformer"]:
+        return get_trfrmr_eval_step(config["n_heads"]["out_sizes"])
+    
 

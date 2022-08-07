@@ -1,16 +1,23 @@
 import os
+from attr import attr
 import optax
+from xcffib import Union
 import yaml
 
 from typing import Any, Dict, Callable, Tuple
 
 import jax
-import jax.random as jrandom
-import jax.numpy as jnp
 import equinox as eqx
+import jax.numpy as jnp
+import jax.tree_util as jtu
+import jax.random as jrandom
+from flax.training import train_state
+from flax import traverse_util, struct
+from flax.training.common_utils import onehot
+from transformers import FlaxAutoModelForSequenceClassification
 
-from chat_cmds.models.rnns import RNN, BiRNN, pick_index
 from chat_cmds.models.utils import NFoldHead
+from chat_cmds.models.rnns import RNN, BiRNN, pick_index
 
 
 def check_config(config):
@@ -18,16 +25,20 @@ def check_config(config):
         config["rnn"]["use_rnn"] != config["transformer"]["use_transformer"]
     ), """
         Can only use one of rnn or transformer at a time!"""
-    assert config["rnn"]["cell"] in ["lstm",]
-    
-    if config["optimizer"]["wd"]!=0:
-        assert config["optimizer"]["type"]=="adamw"
-    
+    assert config["rnn"]["cell"] in [
+        "lstm",
+    ]
+
+    if config["optimizer"]["wd"] != 0:
+        assert config["optimizer"]["type"] == "adamw"
+
     if config["rnn"]["use_rnn"]:
         config["n_heads"]["input_size"] = config["rnn"]["hidden_size"]
     else:
         config["n_heads"]["input_size"] = config["transformer"]["hidden_size"]
-    config["n_heads"]["out_sizes"] = {k:v for k,v in config["n_heads"]["out_sizes"].items() if v is not None}
+    config["n_heads"]["out_sizes"] = {
+        k: v for k, v in config["n_heads"]["out_sizes"].items() if v is not None
+    }
     return config
 
 
@@ -42,8 +53,13 @@ def read_yaml(filename: os.PathLike) -> yaml.YAMLObject:
     return check_config(attrs)
 
 
-def load_transformer(trfrmr_config: Dict[str, Any]) -> eqx.Module:
-    raise NotImplementedError()
+def load_transformer(config: Dict[str, Any], key: jrandom.PRNGKey) -> eqx.Module:
+    model = FlaxAutoModelForSequenceClassification.from_pretrained(
+        config["transformer"]["pt_model"],
+        num_classes=sum(config["n_heads"]["out_sizes"].values()),
+        seed=key,
+    )
+    return model
 
 
 def load_rnn(rnn_config: Dict[str, Any], key: jrandom.PRNGKey) -> eqx.Module:
@@ -88,7 +104,8 @@ def load_model(config: Dict[str, Any], key: jrandom.PRNGKey) -> eqx.Module:
         base_model = load_rnn(config["rnn"], base_key)
     elif config["transformer"]["use_transformer"]:
         base_model = load_transformer(config["transformer"], base_key)
-
+        return base_model
+    
     classifier_head = get_head(config["n_heads"], head_key)
 
     return eqx.nn.Sequential([base_model, pick_index(-1), classifier_head])
@@ -130,8 +147,12 @@ def get_lr_schedule(config: Dict[str, Any]):
         config["optimizer"]["warmup"],
         config["optimizer"]["lr_decay"],
     )
-    print("Stepwise learning rates:", [lr_curve(i) for i in range(config["data"]["train_length"])])
+    print(
+        "Stepwise learning rates:",
+        [lr_curve(i) for i in range(config["data"]["train_length"])],
+    )
     return lr_curve
+
 
 def get_rnn_optimizer(config: Dict[str, Any]) -> optax.GradientTransformation:
     if config["optimizer"]["type"] == "adam":
@@ -147,17 +168,94 @@ def get_rnn_optimizer(config: Dict[str, Any]) -> optax.GradientTransformation:
         raise NotImplementedError(config["optimizer"]["type"])
 
 
+class TrainState(train_state.TrainState):
+    """Train state with an Optax optimizer.
+    The two functions below differ depending on whether the task is classification
+    or regression.
+    Args:
+        preds_fn: Applied to last layer to obtain the predictions.
+        loss_fn: Function to compute the loss.
+    """
+
+    head_separator: Callable = struct.field(pytree_node=False)
+    preds_fn: Callable = struct.field(pytree_node=False)
+    loss_fn: Callable = struct.field(pytree_node=False)
+
+
+def decay_mask_fn(params):
+    flat_params = traverse_util.flatten_dict(params)
+    # find out all LayerNorm parameters
+    layer_norm_candidates = ["layernorm", "layer_norm", "ln"]
+    layer_norm_named_params = set(
+        [
+            layer[-2:]
+            for layer_norm_name in layer_norm_candidates
+            for layer in flat_params.keys()
+            if layer_norm_name in "".join(layer).lower()
+        ]
+    )
+    flat_mask = {
+        path: (path[-1] != "bias" and path[-2:] not in layer_norm_named_params)
+        for path in flat_params
+    }
+    return traverse_util.unflatten_dict(flat_mask)
+
+
 def get_trfrmr_optimizer(config: Dict[str, Any]) -> optax.GradientTransformation:
-    pass
+    if config["optimizer"]["type"] == "adamw":
+        return optax.adamw(
+            learning_rate=get_lr_schedule(config),
+            b1=0.9,
+            b2=0.999,
+            eps=1e-6,
+            weight_decay=config["optimizer"]["wd"],
+            mask=decay_mask_fn,
+        )
+    elif config["optimizer"]["type"] == "adam":
+        return optax.adam(
+            learning_rate=get_lr_schedule(config),
+        )
+    else:
+        raise NotImplementedError(config["optimizer"]["type"])
+
+
+def cross_entropy_loss(logits, labels, num_labels):
+    xentropy = optax.softmax_cross_entropy(
+        logits, onehot(labels, num_classes=num_labels)
+    )
+    return jnp.mean(xentropy)
+
+
+def get_head_separator(config):
+    def head_separator(all_logits):
+        attr_wise_logits = {}
+        for k, v in config["n_heads"]["out_sizes"].items():
+            attr_wise_logits[k] = all_logits[..., :v]
+            all_logits = all_logits[..., v:]
+        return attr_wise_logits
+
+    return head_separator
 
 
 def get_optimizer(
     config: Dict[str, Any],
     model,
-) -> Tuple[optax.GradientTransformation, optax.OptState]:
+) -> Tuple[optax.GradientTransformation, Union[optax.OptState, TrainState]]:
     if config["rnn"]["use_rnn"]:
         optimizer = get_rnn_optimizer(config)
         opt_state = optimizer.init(eqx.filter(model, eqx.is_array))
         return optimizer, opt_state
     else:
         optimizer = get_trfrmr_optimizer(config)
+        training_state = TrainState.create(
+            apply_fn=model.__call__,
+            params=model.params,
+            tx=optimizer,
+            preds_fn=lambda logits: jtu.tree_map(
+                lambda z: jnp.argmax(z, axis=-1), logits
+            ),
+            head_separator=get_head_separator(config),
+            loss_fn=cross_entropy_loss,
+        )
+
+        return optimizer, training_state

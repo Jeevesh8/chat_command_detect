@@ -68,7 +68,8 @@ class BiRNN(eqx.Module):
 
         return lax.scan(f, init_state, input)[1]
 
-    def __call__(self, input, length, *, key):
+    def __call__(self, input, *, key):
+        length = jnp.sum(input.any(axis=-1))
         forward_out = self.run_cell(input)
         input = flip_padded_seq(input, length)
         backward_out = self.run_cell(input, False)
