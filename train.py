@@ -20,6 +20,10 @@ def main():
 
     df, cat_to_int_map = get_data(**config["data"])
     train_dataloader, eval_dataloader = get_train_eval_loaders(config, df)
+    print(
+        "Training data stats:",
+        [df[df["split"] == "train_data"][k].value_counts() for k in cat_to_int_map],
+    )
     train_dataloader, eval_dataloader = list(train_dataloader), list(eval_dataloader)
 
     config["data"]["train_length"] = len(df[df["split"] == "train_data"])
@@ -58,10 +62,12 @@ def main():
 
                 for batch in eval_dataloader:
                     batch_predictions = eval_step(model, shard(batch[0]))
-                    batch_predictions = jtu.tree_map(lambda x: x.flatten().tolist(), batch_predictions)
+                    batch_predictions = jtu.tree_map(
+                        lambda x: x.flatten().tolist(), batch_predictions
+                    )
                     batch_labels = jtu.tree_map(lambda arr: arr.tolist(), batch[1])
-                    preds = {k: preds[k]+batch_predictions[k] for k in preds}
-                    labels = {k: labels[k]+batch_labels[k] for k in labels}
+                    preds = {k: preds[k] + batch_predictions[k] for k in preds}
+                    labels = {k: labels[k] + batch_labels[k] for k in labels}
 
                 for k in preds:
                     print(
@@ -72,7 +78,10 @@ def main():
                             target_names=cat_to_int_map[k].keys(),
                         ),
                     )
-                    
+        print(
+            f"Train loss: {sum(train_metrics['losses'])/len(train_metrics['losses'])}"
+        )
+        train_metrics["losses"] = []
         print(f"Completed epoch {epoch}")
 
 
