@@ -77,9 +77,11 @@ def train_rnn_main(config, train_dataloader, eval_dataloader, cat_to_int_map):
 def train_trfrmr_main(config, train_dataloader, eval_dataloader, cat_to_int_map):
 
     key = jax.random.PRNGKey(config["training"]["seed"])
+    key, subkey = jax.random.split(key)
+    
+    model = load_model(config, subkey)
+    
     dropout_rngs = jax.random.split(key, jax.local_device_count())
-
-    model = load_model(config, key)
 
     _, train_state = get_optimizer(config, model)
     train_step = get_train_step(_, config)

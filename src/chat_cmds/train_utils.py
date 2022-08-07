@@ -32,8 +32,7 @@ def check_config(config):
 
     if config["rnn"]["use_rnn"]:
         config["n_heads"]["input_size"] = config["rnn"]["hidden_size"]
-    else:
-        config["n_heads"]["input_size"] = config["transformer"]["hidden_size"]
+    
     config["n_heads"]["out_sizes"] = {
         k: v for k, v in config["n_heads"]["out_sizes"].items() if v is not None
     }
@@ -54,8 +53,8 @@ def read_yaml(filename: os.PathLike) -> yaml.YAMLObject:
 def load_transformer(config: Dict[str, Any], key: jrandom.PRNGKey) -> eqx.Module:
     model = FlaxAutoModelForSequenceClassification.from_pretrained(
         config["transformer"]["pt_model"],
-        num_classes=sum(config["n_heads"]["out_sizes"].values()),
-        seed=key,
+        num_labels=sum(config["n_heads"]["out_sizes"].values()),
+        seed=key[0],
     )
     return model
 
@@ -101,7 +100,7 @@ def load_model(config: Dict[str, Any], key: jrandom.PRNGKey) -> eqx.Module:
     if config["rnn"]["use_rnn"]:
         base_model = load_rnn(config["rnn"], base_key)
     elif config["transformer"]["use_transformer"]:
-        base_model = load_transformer(config["transformer"], base_key)
+        base_model = load_transformer(config, base_key)
         return base_model
     
     classifier_head = get_head(config["n_heads"], head_key)
