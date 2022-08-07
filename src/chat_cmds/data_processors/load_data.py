@@ -93,7 +93,12 @@ def get_data(
         df = drop_dups(df)
 
     if balance_data is not None:
-        max_size = max([df[col].value_counts().max() for col in balance_data])
+        max_size = max(
+            [
+                df[df["split"] == "train_data"][col].value_counts().max()
+                for col in balance_data
+            ]
+        )
         for col in balance_data:
             df = equalize_labels(df, col, max_size)
 
