@@ -49,6 +49,7 @@ def eval_rnn_main(
         )
         print(f"Metrics for {k}:", eval_metrics_dict)
         wandb.log({k: eval_metrics_dict})
+
     if print_labels:
         print(labels)
 
@@ -94,7 +95,15 @@ def train_rnn_main(config, train_dataloader, eval_dataloader, cat_to_int_map):
     wandb.save(config["logging"]["save_file"])
 
 
-def eval_trfrmr_main(config, eval_dataloader, eval_step, train_state, cat_to_int_map):
+def eval_trfrmr_main(
+    config,
+    eval_dataloader,
+    eval_step,
+    train_state,
+    cat_to_int_map,
+    print_labels: bool = False,
+):
+
     labels = {k: [] for k, v in config["n_heads"]["out_sizes"].items()}
 
     preds = {k: [] for k, v in config["n_heads"]["out_sizes"].items()}
@@ -119,6 +128,9 @@ def eval_trfrmr_main(config, eval_dataloader, eval_step, train_state, cat_to_int
             output_dict=True,
         )
         wandb.log({k: eval_metrics_dict})
+    
+    if print_labels:
+        print(labels)
 
 
 def train_trfrmr_main(config, train_dataloader, eval_dataloader, cat_to_int_map):
@@ -171,7 +183,7 @@ def train_trfrmr_main(config, train_dataloader, eval_dataloader, cat_to_int_map)
     print("Completed Training! Saving model at:", config["logging"]["save_file"])
     params = jax.device_get(unreplicate(train_state.params))
     model.save_pretrained(config["logging"]["save_file"], params=params)
-    
+
     for filename in os.listdir(config["logging"]["save_file"]):
         wandb.save(os.path.join(config["logging"]["save_file"], filename))
 
