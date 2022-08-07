@@ -79,16 +79,12 @@ def main():
                     labels = {k: labels[k] + batch_labels[k] for k in labels}
 
                 for k in preds:
-                    wandb.log(
-                        {"step": num_steps}.update(
-                            classification_report(
-                                labels[k],
-                                preds[k],
-                                target_names=cat_to_int_map[k].keys(),
-                                output_dict=True,
-                            )
-                        )
-                    )
+                    eval_metrics_dict = classification_report(labels[k],
+                                                              preds[k],
+                                                              target_names=cat_to_int_map[k].keys(),
+                                                              output_dict=True,)
+                    eval_metrics_dict.update({"step": num_steps})
+                    wandb.log(eval_metrics_dict)
         
         wandb.log({
             "running_train_loss": sum(train_metrics['losses'])/len(train_metrics['losses']),
@@ -103,10 +99,12 @@ def main():
     wandb.save(config["logging"]["save_file"])
 
 if __name__ == "__main__":
-    wandb.init(project="chat_cmds")
     
     if len(sys.argv)>2:
         wandb.login(key=sys.argv[2])
     else:
         wandb.login()
+    
+    wandb.init(project="chat_cmds")
+    
     main()
