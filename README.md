@@ -2,7 +2,7 @@
 
 ## The Data
 
-The dataset is present in the ``[data/](https://github.com/Jeevesh8/chat_command_detect/tree/main/data)`` folder. Upon close analysis, a few points are revealed:
+The dataset is present in the [``data/``](https://github.com/Jeevesh8/chat_command_detect/tree/main/data) folder. Upon close analysis, a few points are revealed:
 
 1. As data is generated from speech, we see that a lot of data is just repeated. That is the same commands(the same exact transcript) occur many times. Only 248 unique samples exist.
 
@@ -10,11 +10,11 @@ The dataset is present in the ``[data/](https://github.com/Jeevesh8/chat_command
 
 3. Hence, we are in a low-data scenario. With only 248 chat commands available to us, with around 6 action + 14 object + 4 location labels to learn.
 
-See notebook performing some basic EDA and samples from data and labels at ``[notebooks/eda.ipynb](https://github.com/Jeevesh8/chat_command_detect/blob/main/notebooks/eda.ipynb)``.
+See notebook performing some basic EDA and samples from data and labels at [``notebooks/eda.ipynb``](https://github.com/Jeevesh8/chat_command_detect/blob/main/notebooks/eda.ipynb).
 
 ## Basic Models
 
-We begin our analysis with some basic models like Bag-of-Words based Naive-Bayes Classsifiers, and just maximizing cosine distance from a known set of word embeddings in ``[notebooks/baseline_models.ipynb](https://github.com/Jeevesh8/chat_command_detect/blob/main/notebooks/baseline_models.ipynb)``.
+We begin our analysis with some basic models like Bag-of-Words based Naive-Bayes Classsifiers, and just maximizing cosine distance from a known set of word embeddings in [``notebooks/baseline_models.ipynb``](https://github.com/Jeevesh8/chat_command_detect/blob/main/notebooks/baseline_models.ipynb).
 
 We observe that Naive-Bayes gives an almost perfect fit for the data. This is a strong indicatioin that all the different kinds of labels are independent given the text.
 
@@ -30,7 +30,7 @@ a classification problem; as language models generally perform better on them. W
 
 ## Recurrent Models
 
-We continue our analysis, by beginning to use recurrent models. To prepare the environment and run, see ``[notebooks/run_models/run_rnn.ipynb](https://github.com/Jeevesh8/chat_command_detect/blob/main/notebooks/run_models/run_rnn.ipynb)``. Or see logs on [WandB](https://wandb.ai/jeevesh8/chat_cmds).
+We continue our analysis, by beginning to use recurrent models. To prepare the environment and run, see [``notebooks/run_models/run_rnn.ipynb``](https://github.com/Jeevesh8/chat_command_detect/blob/main/notebooks/run_models/run_rnn.ipynb). Or see logs on [``WandB``](https://wandb.ai/jeevesh8/chat_cmds).
 
 We try different architectures and observe several phenomenon:
 
@@ -41,6 +41,7 @@ We try different architectures and observe several phenomenon:
 3. Single Task LSTM's can quickly learn their respective tasks.
 
 Note that to learn semantics well in our model, we train the models on fixed embeddings from [FastText](https://github.com/facebookresearch/fastText).
+
 ## Transformer Models
 
 Next, we try finetuning pre-trained transformer models. We try several pre-trained models: ``bert-base-uncased``, ``roberta``, ``albert``. All of them seem to learn in very few epochs compared to their recurrant counterparts.
@@ -49,9 +50,9 @@ The finetuned checkpoints are available for ``bert-base-uncased`` and the recurr
 
 ## Evaluation
 
-We generate a sample test set by performing simple replacements like ``Turn->Blow`` and ``Chinese->Mandarin``. It is present in ``[test_data.csv](https://github.com/Jeevesh8/chat_command_detect/blob/main/test_data.csv)``.
+We generate a sample test set by performing simple replacements like ``Turn->Blow`` and ``Chinese->Mandarin``. It is present in [``test_data.csv``](https://github.com/Jeevesh8/chat_command_detect/blob/main/test_data.csv).
 
-To evaluate, we can use the same script and the same command, but with setting ``inference->run_infer`` as ``true`` in ``[config.yaml](https://github.com/Jeevesh8/chat_command_detect/blob/main/config.yaml)``. And providing the name of run from wandb, to load weights from in ``inference->run_name``. For example, ``jeevesh8/chat_cmds/k95jqc9b`` is name of [this run](https://wandb.ai/jeevesh8/chat_cmds/runs/k95jqc9b/).
+To evaluate, we can use the same script and the same command, but with setting ``inference->run_infer`` as ``true`` in [``config.yaml``](https://github.com/Jeevesh8/chat_command_detect/blob/main/config.yaml). And providing the name of run from wandb, to load weights from in ``inference->run_name``. For example, ``jeevesh8/chat_cmds/k95jqc9b`` is name of [this run](https://wandb.ai/jeevesh8/chat_cmds/runs/k95jqc9b/).
 
 ## Future Work
 
