@@ -131,7 +131,7 @@ def trfrmr_data_loader(
         for k in tokenization:
             if k not in batched_inputs:
                 batched_inputs[k] = []
-            batched_inputs[k].append(tokenization[k])
+            batched_inputs[k].append(tokenization[k][0])
 
         for k in batched_labels:
             batched_labels[k].append(row[k])

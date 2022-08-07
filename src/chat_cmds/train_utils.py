@@ -252,7 +252,7 @@ def get_optimizer(
                 lambda z: jnp.argmax(z, axis=-1), logits
             ),
             head_separator=get_head_separator(config),
-            loss_fn=cross_entropy_loss,
+            loss_fn=lambda a,b,c: jtu.tree_map(cross_entropy_loss, a, b, c),
         )
 
         return optimizer, training_state

@@ -1,4 +1,5 @@
 import sys
+import copy
 
 import jax, wandb
 import jax.numpy as jnp
@@ -75,6 +76,7 @@ def train_rnn_main(config, train_dataloader, eval_dataloader, cat_to_int_map):
 
 
 def train_trfrmr_main(config, train_dataloader, eval_dataloader, cat_to_int_map):
+    original_loaders = (train_dataloader, eval_dataloader)
 
     key = jax.random.PRNGKey(config["training"]["seed"])
     key, subkey = jax.random.split(key)
@@ -93,6 +95,7 @@ def train_trfrmr_main(config, train_dataloader, eval_dataloader, cat_to_int_map)
     num_steps = 0
 
     for epoch in range(config["optimizer"]["epochs"]):
+        train_dataloader, eval_dataloader = copy.deepcopy(original_loaders)
         for batch in train_dataloader:
             batch = shard(batch)
             train_state, train_metric, dropout_rngs = train_step(
@@ -107,7 +110,9 @@ def train_trfrmr_main(config, train_dataloader, eval_dataloader, cat_to_int_map)
 
                 for batch in eval_dataloader:
                     batch_labels = batch.pop("labels")
+                    batch = shard(batch)
                     batch_predictions = eval_step(train_state, batch)
+                    batch_predictions = unreplicate(batch_predictions)
                     batch_predictions = jtu.tree_map(
                         lambda x: x.flatten().tolist(), batch_predictions
                     )

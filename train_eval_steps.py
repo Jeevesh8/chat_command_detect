@@ -63,7 +63,7 @@ def get_trfrmr_train_step(num_labels):
 def get_trfrmr_eval_step(num_labels):
     
     @partial(jax.pmap, axis_name="batch")
-    def eval_step(state, batch, labels):
+    def eval_step(state, batch,):
         logits = state.apply_fn(**batch, params=state.params, train=False)[0]
         logits = state.head_separator(logits)
         return state.preds_fn(logits)
