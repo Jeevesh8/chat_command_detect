@@ -29,6 +29,8 @@ def equalize_labels(df: pd.DataFrame, col: str) -> pd.DataFrame:
     """Repeats rows of df so that every value in col is
     equally likely.
     """
+    df = df[df["split"]=="train_data"]
+    valid_df = df[df["split"]=="valid_data"]
     max_size = df[col].value_counts().max()
     lst = [df]
 
@@ -42,7 +44,7 @@ def equalize_labels(df: pd.DataFrame, col: str) -> pd.DataFrame:
                 )
             )
 
-    return pd.concat(lst)
+    return pd.concat([valid_df]+lst)
 
 
 def get_data(
