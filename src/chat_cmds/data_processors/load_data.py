@@ -25,13 +25,16 @@ def standardize_texts(df: pd.DataFrame) -> pd.Series:
     return df["transcription"].map(lambda text: text.replace("’", "'"))
 
 
-def equalize_labels(df: pd.DataFrame, col: str) -> pd.DataFrame:
+def equalize_labels(
+    df: pd.DataFrame, col: str, max_size: Optional[int] = None
+) -> pd.DataFrame:
     """Repeats rows of df so that every value in col is
     equally likely.
     """
-    valid_df = df[df["split"]=="valid_data"]
-    df = df[df["split"]=="train_data"]
-    max_size = df[col].value_counts().max()
+    valid_df = df[df["split"] == "valid_data"]
+    df = df[df["split"] == "train_data"]
+    if max_size is None:
+        max_size = df[col].value_counts().max()
     lst = [df]
 
     for _, group in df.groupby(col):
@@ -44,7 +47,7 @@ def equalize_labels(df: pd.DataFrame, col: str) -> pd.DataFrame:
                 )
             )
 
-    return pd.concat([valid_df]+lst)
+    return pd.concat([valid_df] + lst)
 
 
 def get_data(
@@ -52,7 +55,7 @@ def get_data(
     data_files: Optional[List[str]] = None,
     drop_duplicates: bool = True,
     balance_data: Optional[List[str]] = None,
-    shuffle: bool=True,
+    shuffle: bool = True,
     cat_to_int: bool = True,
 ) -> pd.DataFrame:
     """Returns a preprocessed data-frame containing the loaded data.
@@ -69,7 +72,7 @@ def get_data(
         shuffle:         If true, the rows of the dataset will be shuffled(deterministically)
                          Default: True.
         cat_to_int:      If true, the categorical columns of ['action', 'object', 'location']
-                         are converted to integer values. The integers are assigned to the 
+                         are converted to integer values. The integers are assigned to the
                          categories in alphabetic order. Default: True
     Returns:
         A DataFrame of the loaded data.
@@ -90,20 +93,23 @@ def get_data(
         df = drop_dups(df)
 
     if balance_data is not None:
+        max_size = max([df[col].value_counts().max() for col in balance_data])
         for col in balance_data:
-            df = equalize_labels(df, col)
-    
+            df = equalize_labels(df, col, max_size)
+
     if shuffle:
-        df = df.sample(frac=1, random_state=42,).reset_index(drop=True)
-    
+        df = df.sample(
+            frac=1,
+            random_state=42,
+        ).reset_index(drop=True)
+
     cat_to_int_map = {}
     if cat_to_int:
-        
-        for col in ['action', 'object', 'location']:
+
+        for col in ["action", "object", "location"]:
             col_vals = df[col].unique().tolist()
             col_vals.sort()
-            mapping = {v: i for i,v in enumerate(col_vals)}
+            mapping = {v: i for i, v in enumerate(col_vals)}
             df[col] = df[col].map(mapping)
             cat_to_int_map[col] = mapping
     return df, cat_to_int_map
-
