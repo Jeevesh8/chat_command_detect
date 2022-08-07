@@ -18,16 +18,18 @@ from train_eval_steps import get_eval_step, get_train_step
 def main():
     config = read_yaml(sys.argv[1])
 
-    wandb.config = config
+    wandb.init(project="chat_cmds",
+               config=config)
+    
     wandb.run.name = config["logging"]["run_name"]
+    
     
     df, cat_to_int_map = get_data(**config["data"])
     train_dataloader, eval_dataloader = get_train_eval_loaders(config, df)
 
-    wandb.log(
-        {
-            "training_data_stats": {
-                k: df[df["split"] == "train_data"][k].value_counts().tolist()
+    print({
+        "training_data_stats": {
+            k: df[df["split"] == "train_data"][k].value_counts().tolist()
                 for k in cat_to_int_map
             },
         }
@@ -104,7 +106,5 @@ if __name__ == "__main__":
         wandb.login(key=sys.argv[2])
     else:
         wandb.login()
-    
-    wandb.init(project="chat_cmds")
     
     main()
