@@ -1,3 +1,5 @@
+from functools import partial
+
 import jax
 import equinox as eqx
 import jax.numpy as jnp
@@ -35,7 +37,7 @@ def get_rnn_eval_step():
 
 def get_trfrmr_train_step(num_labels):
     
-    @jax.pmap(axis_name="batch", donate_argnums=(0,))
+    @partial(jax.pmap, axis_name="batch", donate_argnums=(0,))
     def train_step(state, batch, dropout_rng):
         """Trains model with an optimizer (both in `state`) on `batch`, 
            returning a pair `(new_state, loss)`."""
@@ -60,11 +62,10 @@ def get_trfrmr_train_step(num_labels):
 
 def get_trfrmr_eval_step(num_labels):
     
-    @jax.pmap(axis_name="batch")
+    @partial(jax.pmap, axis_name="batch")
     def eval_step(state, batch, labels):
         logits = state.apply_fn(**batch, params=state.params, train=False)[0]
         logits = state.head_separator(logits)
-        loss = state.loss_fn(logits, labels, num_labels)
         return state.preds_fn(logits)
 
     return eval_step
