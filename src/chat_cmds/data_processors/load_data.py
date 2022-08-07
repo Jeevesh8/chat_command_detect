@@ -26,18 +26,19 @@ def standardize_texts(df: pd.DataFrame) -> pd.Series:
 
 
 def equalize_labels(
-    df: pd.DataFrame, col: str, max_size: Optional[int] = None
+    df: pd.DataFrame, cols: List[str],
 ) -> pd.DataFrame:
     """Repeats rows of df so that every value in col is
     equally likely.
     """
     valid_df = df[df["split"] == "valid_data"]
+    
     df = df[df["split"] == "train_data"]
-    if max_size is None:
-        max_size = df[col].value_counts().max()
+    max_size = max([len(group) for _, group in df.groupby(cols)])
+    
     lst = [df]
 
-    for _, group in df.groupby(col):
+    for _, group in df.groupby(cols):
         if len(group) < max_size:
             num_grps_to_add = (max_size // len(group)) - 1
             lst += [group] * num_grps_to_add
@@ -46,7 +47,7 @@ def equalize_labels(
                     max_size - len(group) * (num_grps_to_add + 1), replace=False
                 )
             )
-
+    
     return pd.concat([valid_df] + lst)
 
 
@@ -93,14 +94,7 @@ def get_data(
         df = drop_dups(df)
 
     if balance_data is not None:
-        max_size = max(
-            [
-                df[df["split"] == "train_data"][col].value_counts().max()
-                for col in balance_data
-            ]
-        )
-        for col in balance_data:
-            df = equalize_labels(df, col, max_size)
+        df = equalize_labels(df, balance_data)
 
     if shuffle:
         df = df.sample(
