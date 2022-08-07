@@ -170,3 +170,12 @@ def get_train_eval_loaders(
     eval_dataloader = get_loader(config, df[df["split"] == "valid_data"], **loader_args)
 
     return train_dataloader, eval_dataloader
+
+def get_test_loader(config, df):
+    batch_size = config["training"]["per_device_batch_size"] * jax.device_count()
+    loader_args = dict(
+        batch_size=batch_size,
+        seq_len=config["training"]["seq_len"],
+        cols=[k for k, v in config["n_heads"]["out_sizes"].items()],
+    )
+    get_loader(config, df, **loader_args)

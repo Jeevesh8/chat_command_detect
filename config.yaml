@@ -46,3 +46,8 @@ logging:
   eval_steps: 80
   save_file: bert_all_three_model.tree
   run_name: trfrmr_first
+
+inference:
+  run_infer: false
+  run_id: jeevesh8/chat_cmds/runs
+  test_file: ./test_data.csv
