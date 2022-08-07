@@ -104,4 +104,9 @@ def main():
 
 if __name__ == "__main__":
     wandb.init(project="chat_cmds")
+    
+    if len(sys.argv)>2:
+        wandb.login(key=sys.argv[2])
+    else:
+        wandb.login()
     main()
