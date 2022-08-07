@@ -40,6 +40,7 @@ We try different architectures and observe several phenomenon:
 
 3. Single Task LSTM's can quickly learn their respective tasks.
 
+Note that to learn semantics well in our model, we train the models on fixed embeddings from [FastText](https://github.com/facebookresearch/fastText).
 ## Transformer Models
 
 Next, we try finetuning pre-trained transformer models. We try several pre-trained models: ``bert-base-uncased``, ``roberta``, ``albert``. All of them seem to learn in very few epochs compared to their recurrant counterparts.
@@ -50,7 +51,7 @@ The finetuned checkpoints are available for ``bert-base-uncased`` and the recurr
 
 We generate a sample test set by performing simple replacements like ``Turn->Blow`` and ``Chinese->Mandarin``. It is present in ``[test_data.csv](https://github.com/Jeevesh8/chat_command_detect/blob/main/test_data.csv)``.
 
-To evaluate, we can use the same script, but with setting ``inference->run_infer`` as ``true`` in ``[config.yaml](https://github.com/Jeevesh8/chat_command_detect/blob/main/config.yaml)``. And providing the name of run from wandb, to load weights from in ``inference->run_name``. For example, ``jeevesh8/chat_cmds/k95jqc9b`` is name of [this run](https://wandb.ai/jeevesh8/chat_cmds/runs/k95jqc9b/).
+To evaluate, we can use the same script and the same command, but with setting ``inference->run_infer`` as ``true`` in ``[config.yaml](https://github.com/Jeevesh8/chat_command_detect/blob/main/config.yaml)``. And providing the name of run from wandb, to load weights from in ``inference->run_name``. For example, ``jeevesh8/chat_cmds/k95jqc9b`` is name of [this run](https://wandb.ai/jeevesh8/chat_cmds/runs/k95jqc9b/).
 
 ## Future Work
 

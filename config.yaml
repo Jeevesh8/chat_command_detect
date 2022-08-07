@@ -1,27 +1,27 @@
 ---
 training:
-  per_device_batch_size: 32
-  seq_len: 32
-  seed: 0
+  per_device_batch_size: 32 #Will be replicated across multiple GPUs, if any
+  seq_len: 32               #Max Sequence Length
+  seed: 0                   #Training seed for reproducibility
 
 optimizer:
-  type: adamw
+  type: adamw               #adam or adamw
   lr: 0.0002
   epochs: 200
   wd: 0.01
-  warmup: 0.1
-  lr_decay: 0
+  warmup: 0.1               #first 10% of training will be warmup
+  lr_decay: 0               #Final learning rate after linear decay throughout training
 
 rnn:
-  use_rnn: false
-  cell: lstm
+  use_rnn: false            #if this is true, set use_transformer false
+  cell: lstm                #only lstm supported, for now
   hidden_size: 128
   in_size: 300
   num_layers: 1
   bidirectional: false
 
 transformer:
-  use_transformer: true
+  use_transformer: true       #if this is true, set use_rnn false
   pt_model: bert-base-uncased
 
 data:
@@ -29,26 +29,26 @@ data:
   data_files: null
   drop_duplicates: true
   shuffle: true
-  balance_data: null
+  balance_data: null         #Specify a [column], to normalize labels in it
 
 embeddings:
-  fasttext_file: null
-  add_pos_embed: false
+  fasttext_file: null       #Will be automatically downloaded 
+  add_pos_embed: false      #Will be supported in Future. Parts-of-speech based input embedding
 
 n_heads:
-  out_sizes:
+  out_sizes:                #set to null to remove the corresponding head
     action: 6
-    object: 14
+    object: 14              
     location: 4
-  use_bias: false
+  use_bias: false           #only supported for LSTM, for now
 
 logging:
-  eval_steps: 80
-  save_file: bert_all_three_model.tree
-  run_name: trfrmr_first
+  eval_steps: 80                    #Evaluated after these many training steps
+  save_file: bert_all_three_model   #will get converted to a directory name, in case of transformer
+  run_name: trfrmr_first            #Will be displayed on wandb
 
 inference:
-  run_infer: false
-  run_name: jeevesh8/chat_cmds/runs
-  test_file: ./test_data.csv
-  print_labels: true
+  run_infer: false                  #if true, only inference will be done
+  run_name: jeevesh8/chat_cmds/runs #path of run from wandb, to load weights from
+  test_file: ./test_data.csv        #test file, to predict labels for
+  print_labels: true                #Labels will be printed if true
