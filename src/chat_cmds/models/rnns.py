@@ -30,7 +30,8 @@ class RNN(eqx.Module):
         )
 
         def f(carry, inp):
-            return self.cell(inp, carry), None
+            cell_out = self.cell(inp, carry)
+            return (cell_out, cell_out[0])
 
         return lax.scan(f, init_state, input)[1]
 
@@ -60,9 +61,10 @@ class BiRNN(eqx.Module):
 
         def f(carry, inp):
             if forward:
-                return self.f_cell(inp, carry), None
+                cell_out = self.f_cell(inp, carry)
             else:
-                return self.b_cell(inp, carry), None
+                cell_out = self.b_cell(inp, carry)
+            return (cell_out, cell_out[0])
 
         return lax.scan(f, init_state, input)[1]
 
@@ -71,3 +73,9 @@ class BiRNN(eqx.Module):
         input = flip_padded_seq(input, length)
         backward_out = self.run_cell(input, False)
         return jnp.concatenate([forward_out, backward_out], axis=-1)
+
+class pick_index(eqx.Module):
+    idx: int = eqx.static_field()
+    
+    def __call__(self, inputs, *, key):
+        return inputs[self.idx]

@@ -9,7 +9,7 @@ import jax.random as jrandom
 import jax.numpy as jnp
 import equinox as eqx
 
-from chat_cmds.models.rnns import RNN, BiRNN
+from chat_cmds.models.rnns import RNN, BiRNN, pick_index
 from chat_cmds.models.utils import NFoldHead
 
 
@@ -91,7 +91,7 @@ def load_model(config: Dict[str, Any], key: jrandom.PRNGKey) -> eqx.Module:
 
     classifier_head = get_head(config["n_heads"], head_key)
 
-    return eqx.nn.Sequential([base_model, eqx.nn.Lambda(lambda x: x[-1, ...]), classifier_head])
+    return eqx.nn.Sequential([base_model, pick_index(-1), classifier_head])
 
 
 def create_learning_rate_fn(
