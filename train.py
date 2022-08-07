@@ -69,7 +69,7 @@ def main():
                         classification_report(
                             labels[k],
                             preds[k],
-                            target_names=cat_to_int_map[k].values(),
+                            target_names=cat_to_int_map[k].keys(),
                         ),
                     )
                     
