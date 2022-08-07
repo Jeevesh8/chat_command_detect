@@ -18,7 +18,7 @@ rnn:
   hidden_size: 128
   in_size: 300
   num_layers: 1
-  bidirectional: true
+  bidirectional: false
 
 transformer:
   use_transformer: false

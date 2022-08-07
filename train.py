@@ -20,7 +20,8 @@ def main():
 
     df = get_data(**config["data"])
     train_dataloader, eval_dataloader = get_train_eval_loaders(config, df)
-
+    train_dataloader, eval_dataloader = list(train_dataloader), list(eval_dataloader)
+    
     config["data"]["train_length"] = len(df[df["split"] == "train_data"])
     config["data"]["valid_length"] = len(df[df["split"] == "valid_data"])
 
@@ -31,8 +32,6 @@ def main():
 
     train_step = get_train_step(optimizer, config)
     eval_step = get_eval_step(config)
-
-    opt_state, model = replicate(opt_state), replicate(eqx.filter(model, eqx.is_array))
 
     train_metrics = {"losses": []}
     num_steps = 0

@@ -11,13 +11,13 @@ def cross_entropy_loss(logits, labels, num_labels):
 
 def get_rnn_train_step(optim, num_labels):
     
-    @eqx.filter_pmap(axis_name="device_axis", donate_argnums=(0,1,))
+    @eqx.filter_pmap(args=(None, None,), axis_name="device_axis", donate_argnums=(0,), out=None)
     def train_step(model, opt_state, x, y):
         
         @eqx.filter_value_and_grad
         def loss_fn(model, x, y,):
-            logits = eqx.filter_vmap(model, in_axes=(None, 0))(x)
-            loss = jtu.tree_reduce(lambda x,y: x+y, jtu.tree_map(cross_entropy_loss, logits, y, num_labels))
+            logits = jax.vmap(model,)(x)
+            loss = jtu.tree_reduce(lambda w,z: w+z, jtu.tree_map(cross_entropy_loss, logits, y, num_labels))
             return loss
         
         loss, grads = loss_fn(model, x, y)
@@ -30,10 +30,10 @@ def get_rnn_train_step(optim, num_labels):
     return train_step
 
 def get_rnn_eval_step():
-
-    @eqx.filter_pmap(axis_name="device_axis")
+    
+    @eqx.filter_pmap(args=(None,), axis_name="device_axis", out=None)
     def eval_step(model, x,):
-        logits = eqx.filter_vmap(model, in_axes=(None, 0))(x)
+        logits = jax.vmap(model,)(x)
         return jnp.argmax(logits, axis=-1)
     
     return eval_step
