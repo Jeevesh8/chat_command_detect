@@ -59,7 +59,7 @@ def load_rnn(rnn_config: Dict[str, Any], key: jrandom.PRNGKey) -> eqx.Module:
 
     layers = [rnn_class(**kwargs, key=keys[0])]
 
-    kwargs = kwargs.update(in_size=rnn_config["hidden_size"])
+    kwargs.update(in_size=rnn_config["hidden_size"])
 
     for key in keys[1:]:
         layers.append(rnn_class(**kwargs, key=key))
