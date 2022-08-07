@@ -1,6 +1,6 @@
 import sys
 
-import jax
+import jax, wandb
 import jax.numpy as jnp
 import equinox as eqx
 import jax.tree_util as jtu
@@ -18,12 +18,21 @@ from train_eval_steps import get_eval_step, get_train_step
 def main():
     config = read_yaml(sys.argv[1])
 
+    wandb.config = config
+    wandb.run.name = config["logging"]["run_name"]
+    
     df, cat_to_int_map = get_data(**config["data"])
     train_dataloader, eval_dataloader = get_train_eval_loaders(config, df)
-    print(
-        "Training data stats:",
-        [df[df["split"] == "train_data"][k].value_counts() for k in cat_to_int_map],
+
+    wandb.log(
+        {
+            "training_data_stats": {
+                k: df[df["split"] == "train_data"][k].value_counts().tolist()
+                for k in cat_to_int_map
+            },
+        }
     )
+
     train_dataloader, eval_dataloader = list(train_dataloader), list(eval_dataloader)
 
     config["data"]["train_length"] = len(df[df["split"] == "train_data"])
@@ -70,20 +79,29 @@ def main():
                     labels = {k: labels[k] + batch_labels[k] for k in labels}
 
                 for k in preds:
-                    print(
-                        f"Evaluation metrics at step {num_steps} for task of predicting {k}:",
-                        classification_report(
-                            labels[k],
-                            preds[k],
-                            target_names=cat_to_int_map[k].keys(),
-                        ),
+                    wandb.log(
+                        {"step": num_steps}.update(
+                            classification_report(
+                                labels[k],
+                                preds[k],
+                                target_names=cat_to_int_map[k].keys(),
+                                output_dict=True,
+                            )
+                        )
                     )
-        print(
-            f"Train loss: {sum(train_metrics['losses'])/len(train_metrics['losses'])}"
-        )
+        
+        wandb.log({
+            "running_train_loss": sum(train_metrics['losses'])/len(train_metrics['losses']),
+            "epoch": epoch+1,
+        })
+
         train_metrics["losses"] = []
         print(f"Completed epoch {epoch}")
-
+    
+    print("Completed Training! Saving model at:")
+    eqx.tree_serialise_leaves(config["logging"]["save_file"], model)
+    wandb.save(config["logging"]["save_file"])
 
 if __name__ == "__main__":
+    wandb.init(project="chat_cmds")
     main()

@@ -10,3 +10,4 @@ equinox
 scikit-learn
 fasttext
 spacy
+wandb

@@ -6,18 +6,18 @@ training:
 
 optimizer:
   type: adam
-  lr: 0.001
-  epochs: 20
+  lr: 0.01
+  epochs: 200
   wd: 0
   warmup: 0
-  lr_decay: 0.001
+  lr_decay: 0.01
 
 rnn:
   use_rnn: true
   cell: lstm
   hidden_size: 128
   in_size: 300
-  num_layers: 2
+  num_layers: 1
   bidirectional: false
 
 transformer:
@@ -30,7 +30,7 @@ data:
   data_files: null
   drop_duplicates: true
   shuffle: true
-  balance_data: [action, location, object]
+  balance_data: [action]
 
 embeddings:
   fasttext_file: null
@@ -39,9 +39,11 @@ embeddings:
 n_heads:
   out_sizes:
     action: 6
-    object: 14
-    location: 4
+    object: null
+    location: null
   use_bias: false
 
 logging:
-  eval_steps: 10
+  eval_steps: 80
+  save_file: lstm_action_model.tree
+  run_name: lstm_action
