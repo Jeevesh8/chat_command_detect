@@ -178,4 +178,4 @@ def get_test_loader(config, df):
         seq_len=config["training"]["seq_len"],
         cols=[k for k, v in config["n_heads"]["out_sizes"].items()],
     )
-    get_loader(config, df, **loader_args)
+    return get_loader(config, df, **loader_args)

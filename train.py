@@ -127,6 +127,7 @@ def eval_trfrmr_main(
             target_names=cat_to_int_map[k].keys(),
             output_dict=True,
         )
+        print(f"Metrics for {k}:", eval_metrics_dict)
         wandb.log({k: eval_metrics_dict})
     
     if print_labels:
@@ -191,7 +192,7 @@ def train_trfrmr_main(config, train_dataloader, eval_dataloader, cat_to_int_map)
 def infer(config):
     wts_file = load_wandb_weights(config)
     _, cat_to_int_map = get_data(**config["data"])
-    test_df = get_data(
+    test_df, _ = get_data(
         data_files=[config["inference"]["test_file"]], shuffle=False, cat_to_int=False
     )
 
@@ -199,20 +200,22 @@ def infer(config):
         test_df[col] = test_df[col].map(cat_to_int_map[col])
     test_loader = get_test_loader(config, test_df)
     model = get_pretrained_model(config, wts_file)
+    
+    wandb.init(project="scratch", mode='offline')
 
     if config["rnn"]["use_rnn"]:
         eval_step = get_eval_step(config)
-        eval_rnn_main(config, test_loader, eval_step, model, cat_to_int_map)
+        eval_rnn_main(config, test_loader, eval_step, model, cat_to_int_map, config["inference"]["print_labels"])
 
     elif config["transformer"]["use_transformer"]:
         eval_step = get_eval_step(config)
-        eval_trfrmr_main(config, test_loader, eval_step, model, cat_to_int_map)
-
+        eval_trfrmr_main(config, test_loader, eval_step, model, cat_to_int_map, config["inference"]["print_labels"])
 
 def main():
     config = read_yaml(sys.argv[1])
     if config["inference"]["run_infer"]:
         infer(config)
+        exit(0)
 
     wandb.init(project="chat_cmds", config=config)
 

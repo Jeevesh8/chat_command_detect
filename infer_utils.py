@@ -10,7 +10,7 @@ def load_wandb_weights(config):
     api = wandb.Api()
     run = api.run(config["inference"]["run_name"])
     run.config.pop("inference")
-    config.upate(run.config)
+    config.update(run.config)
     
     for filename in ["flax_model.msgpack", "config.json"]:
         wts_file = wandb.restore(os.path.join(config["logging"]["save_file"], filename),
@@ -25,8 +25,9 @@ def get_pretrained_model(config, wt_file):
         model = eqx.tree_deserialise_leaves(wt_file, model)
         return model
     elif config["transformer"]["use_transformer"]:
+        config["data"]["train_length"] = 1
+        model = model.from_pretrained(wt_file)
         _, train_state = get_optimizer(config, model)
-        model = model.from_pretrained(from_pretrained=wt_file)
-        train_state.params = model.params
         train_state = replicate(train_state)
+        config["data"].pop("train_length")
         return train_state
