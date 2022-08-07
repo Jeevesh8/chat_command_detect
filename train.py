@@ -57,17 +57,11 @@ def main():
                 }
 
                 for batch in eval_dataloader:
-                    predictions = eval_step(model, shard(batch[0]))
-                    preds = jtu.tree_map(
-                        lambda x, y: x + y,
-                        jtu.tree_map(lambda x: x.flatten().tolist(), predictions),
-                        preds,
-                    )
-                    labels += jtu.tree_map(
-                        lambda x, y: x + y,
-                        jtu.tree_map(lambda arr: arr.tolist(), batch[1]),
-                        labels
-                    )
+                    batch_predictions = eval_step(model, shard(batch[0]))
+                    batch_predictions = jtu.tree_map(lambda x: x.flatten().tolist(), batch_predictions)
+                    batch_labels = jtu.tree_map(lambda arr: arr.tolist(), batch[1])
+                    preds = {k: preds[k]+batch_predictions[k] for k in preds}
+                    labels = {k: labels[k]+batch_labels[k] for k in labels}
 
                 for k in preds:
                     print(
