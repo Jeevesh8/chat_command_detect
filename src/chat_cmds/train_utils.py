@@ -1,10 +1,8 @@
 import os
-from attr import attr
 import optax
-from xcffib import Union
 import yaml
 
-from typing import Any, Dict, Callable, Tuple
+from typing import Any, Dict, Callable, Tuple, Union
 
 import jax
 import equinox as eqx
