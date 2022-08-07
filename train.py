@@ -21,7 +21,7 @@ def main():
     df = get_data(**config["data"])
     train_dataloader, eval_dataloader = get_train_eval_loaders(config, df)
     train_dataloader, eval_dataloader = list(train_dataloader), list(eval_dataloader)
-    
+
     config["data"]["train_length"] = len(df[df["split"] == "train_data"])
     config["data"]["valid_length"] = len(df[df["split"] == "valid_data"])
 
@@ -63,7 +63,11 @@ def main():
                         jtu.tree_map(lambda x: x.flatten().tolist(), predictions),
                         preds,
                     )
-                    labels += batch[1].tolist()
+                    labels += jtu.tree_map(
+                        lambda x, y: x + y,
+                        jtu.tree_map(lambda arr: arr.tolist(), batch[1]),
+                        labels
+                    )
 
                 for k in preds:
                     print(

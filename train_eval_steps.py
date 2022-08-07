@@ -31,10 +31,10 @@ def get_rnn_train_step(optim, num_labels):
 
 def get_rnn_eval_step():
     
-    @eqx.filter_pmap(args=(None,), axis_name="device_axis", out=None)
+    @eqx.filter_pmap(args=(None,), axis_name="device_axis",)
     def eval_step(model, x,):
         logits = jax.vmap(model,)(x)
-        return jnp.argmax(logits, axis=-1)
+        return jtu.tree_map(lambda z: jnp.argmax(z, axis=-1), logits)
     
     return eval_step
 
