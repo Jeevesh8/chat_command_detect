@@ -61,3 +61,7 @@ To evaluate, we can use the same script and the same command, but with setting `
 2. Try using conversationally pretrained models like [ConveRT](https://aclanthology.org/2020.findings-emnlp.196.pdf) or [DialoGPT](https://paperswithcode.com/paper/a-bi-model-based-rnn-semantic-frame-parsing), some papers reported that they perform better on intent detection tasks.
 
 3. [Universal Sentence Embeddings](https://www.tensorflow.org/hub/tutorials/semantic_similarity_with_tf_hub_universal_encoder) have been trained with conversations too, and may be useful.
+
+4. Try solving same task in a harder setting, like that of [compositional generalization](https://arxiv.org/abs/1711.00350) tasks.
+
+5. Try zero-shot setting using [Prompting Methods](https://arxiv.org/abs/2107.13586).
