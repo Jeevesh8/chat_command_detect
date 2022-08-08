@@ -254,7 +254,7 @@ def multi_model_infer(config):
         config["inference"]["run_name"] = "/".join(run.path)
         try:
             evaluation_metrics[run.name] = infer(config)
-        except RuntimeError as e:
+        except BaseException as e:
             print(f"Skipping evaluation for model {run.name} due to error:", str(e))
     show_table(evaluation_metrics)
 
