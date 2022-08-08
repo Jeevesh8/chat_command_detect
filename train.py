@@ -252,7 +252,10 @@ def multi_model_infer(config):
         config = copy.deepcopy(original_config)
         config["inference"]["all_models"] = False
         config["inference"]["run_name"] = "/".join(run.path)
-        evaluation_metrics[run.name] = infer(config)
+        try:
+            evaluation_metrics[run.name] = infer(config)
+        except RuntimeError as e:
+            print(f"Skipping evaluation for model {run.name} due to error:", str(e))
     show_table(evaluation_metrics)
 
 
