@@ -246,7 +246,7 @@ def multi_model_infer(config):
     for run in api.runs(original_config["inference"]["run_name"]):
         config = copy.deepcopy(original_config)
         config["inference"]["all_models"] = False
-        config["inference"]["run_name"] = run.path
+        config["inference"]["run_name"] = "/".join(run.path)
         evaluation_metrics[run.name] = infer(config)
     show_table(evaluation_metrics)
 
