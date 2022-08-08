@@ -51,8 +51,9 @@ def eval_rnn_main(
         wandb.log({k: eval_metrics_dict})
 
     if print_labels:
-        int_to_cat_map = {v:k for k,v in cat_to_int_map.items()}
-        print({k: [int_to_cat_map[label] for label in labels[k]]
+        int_to_cat_map = {k: {v1: k1 for k1, v1 in v.items()} 
+                              for k,v in cat_to_int_map.items()}
+        print({k: [int_to_cat_map[k][label] for label in labels[k]]
                 for k in labels})
 
 
@@ -133,8 +134,9 @@ def eval_trfrmr_main(
         wandb.log({k: eval_metrics_dict})
     
     if print_labels:
-        int_to_cat_map = {v:k for k,v in cat_to_int_map.items()}
-        print({k: [int_to_cat_map[label] for label in labels[k]]
+        int_to_cat_map = {k: {v1: k1 for k1, v1 in v.items()} 
+                              for k,v in cat_to_int_map.items()}
+        print({k: [int_to_cat_map[k][label] for label in labels[k]]
                 for k in labels})
 
 
