@@ -48,6 +48,6 @@ def get_pretrained_model(config, wt_file):
 
 def show_table(evaluation_metrics):
     df = pd.DataFrame(
-        {k: pd.json_normalize(v, sep=".") for k, v in evaluation_metrics.items()}
+        {k: pd.json_normalize(v, sep=".").to_dict(orient="records")[0] for k, v in evaluation_metrics.items()}
     )
     print(df.to_markdown())
