@@ -16,7 +16,7 @@ from chat_cmds.data_processors.batch_loader import (
     get_train_eval_loaders,
 )
 from train_eval_steps import get_eval_step, get_train_step
-from infer_utils import load_wandb_weights, get_pretrained_model
+from infer_utils import load_wandb_weights, get_pretrained_model, show_table
 
 
 def eval_rnn_main(
@@ -40,6 +40,7 @@ def eval_rnn_main(
         preds = {k: preds[k] + batch_predictions[k] for k in preds}
         labels = {k: labels[k] + batch_labels[k] for k in labels}
 
+    all_metrics = {}
     for k in preds:
         eval_metrics_dict = classification_report(
             labels[k],
@@ -49,12 +50,15 @@ def eval_rnn_main(
         )
         print(f"Metrics for {k}:", eval_metrics_dict)
         wandb.log({k: eval_metrics_dict})
+        all_metrics[k] = eval_metrics_dict
 
     if print_labels:
         int_to_cat_map = {k: {v1: k1 for k1, v1 in v.items()} 
                               for k,v in cat_to_int_map.items()}
         print({k: [int_to_cat_map[k][label] for label in labels[k]]
                 for k in labels})
+    
+    return all_metrics
 
 
 def train_rnn_main(config, train_dataloader, eval_dataloader, cat_to_int_map):
@@ -123,6 +127,7 @@ def eval_trfrmr_main(
         preds = {k: preds[k] + batch_predictions[k] for k in preds}
         labels = {k: labels[k] + batch_labels[k] for k in labels}
 
+    all_metrics = {}
     for k in preds:
         eval_metrics_dict = classification_report(
             labels[k],
@@ -132,12 +137,16 @@ def eval_trfrmr_main(
         )
         print(f"Metrics for {k}:", eval_metrics_dict)
         wandb.log({k: eval_metrics_dict})
-    
+        all_metrics[k] = eval_metrics_dict
+
     if print_labels:
+
         int_to_cat_map = {k: {v1: k1 for k1, v1 in v.items()} 
                               for k,v in cat_to_int_map.items()}
         print({k: [int_to_cat_map[k][label] for label in labels[k]]
                 for k in labels})
+
+    return all_metrics
 
 
 def train_trfrmr_main(config, train_dataloader, eval_dataloader, cat_to_int_map):
@@ -207,21 +216,53 @@ def infer(config):
         test_df[col] = test_df[col].map(cat_to_int_map[col])
     test_loader = get_test_loader(config, test_df)
     model = get_pretrained_model(config, wts_file)
-    
-    wandb.init(project="scratch", mode='offline')
+
+    wandb.init(project="scratch", mode="offline")
 
     if config["rnn"]["use_rnn"]:
         eval_step = get_eval_step(config)
-        eval_rnn_main(config, test_loader, eval_step, model, cat_to_int_map, config["inference"]["print_labels"])
+        model_metrics = eval_rnn_main(
+            config,
+            test_loader,
+            eval_step,
+            model,
+            cat_to_int_map,
+            config["inference"]["print_labels"],
+        )
 
     elif config["transformer"]["use_transformer"]:
         eval_step = get_eval_step(config)
-        eval_trfrmr_main(config, test_loader, eval_step, model, cat_to_int_map, config["inference"]["print_labels"])
+        model_metrics = eval_trfrmr_main(
+            config,
+            test_loader,
+            eval_step,
+            model,
+            cat_to_int_map,
+            config["inference"]["print_labels"],
+        )
+
+    return model_metrics
+
+
+def multi_model_infer(config):
+    original_config = copy.deepcopy(config)
+    api = wandb.Api()
+    evaluation_metrics = {}
+    for run in api.runs(original_config["inference"]["run_name"]):
+        config = copy.deepcopy(original_config)
+        config["inference"]["all_models"] = False
+        config["inference"]["run_name"] = "/".join(run.path)
+        evaluation_metrics[run.name] = infer(config)
+    show_table(evaluation_metrics)
+
 
 def main():
     config = read_yaml(sys.argv[1])
     if config["inference"]["run_infer"]:
-        infer(config)
+        if config["inference"]["all_models"]:
+            multi_model_infer(config)
+        else:
+            infer(config)
         exit(0)
 
     wandb.init(project="chat_cmds", config=config)

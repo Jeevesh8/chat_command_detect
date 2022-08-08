@@ -52,3 +52,5 @@ inference:
   run_name: jeevesh8/chat_cmds/runs #path of run from wandb, to load weights from
   test_file: ./test_data.csv        #test file, to predict labels for
   print_labels: true                #Labels will be printed if true
+  all_models: true                  #Evaluate all models and print a table of F1's. In this case,
+                                    #run_name should be path of project(jeevesh8/chat_cmds)
