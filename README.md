@@ -50,7 +50,7 @@ The finetuned checkpoints are available for ``bert-base-uncased`` and the recurr
 
 ## Evaluation
 
-We generate a sample test set by performing simple replacements like ``Turn->Blow`` and ``Chinese->Mandarin``. It is present in [``test_data.csv``](https://github.com/Jeevesh8/chat_command_detect/blob/main/test_data.csv).
+We generate a sample test set by performing simple replacements like ``Turn->Blow`` and ``Chinese->Mandarin``. It is present in [``test_data.csv``](https://github.com/Jeevesh8/chat_command_detect/blob/main/test_data.csv). The result on this dataset for various trained models can be found in [``notebooks/run_models/test_results.md``](https://github.com/Jeevesh8/chat_command_detect/blob/main/notebooks/run_models/test_results.md).
 
 To evaluate, we can use the same script and the same command, but with setting ``inference->run_infer`` as ``true`` in [``config.yaml``](https://github.com/Jeevesh8/chat_command_detect/blob/main/config.yaml). And providing the name of run from wandb, to load weights from in ``inference->run_name``. For example, ``jeevesh8/chat_cmds/k95jqc9b`` is name of [this run](https://wandb.ai/jeevesh8/chat_cmds/runs/k95jqc9b/).
 
